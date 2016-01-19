@@ -107,13 +107,13 @@ public class Lg {
     /**
      * Generate list of offsets in string.
      *
-     * @param lenght
+     * @param lenght text lenght
      * @return The list of offsets
      */
     private static ArrayList<Integer> generateOffsetList(int lenght) {
         ArrayList<Integer> list = new ArrayList<>();
 
-        for (int i = 1; i < lenght / LOGCAT_BUFFER_SIZE; ++i) {
+        for (int i = 1; i < (lenght / LOGCAT_BUFFER_SIZE) + 1; i++) {
             list.add(i * LOGCAT_BUFFER_SIZE);
         }
         if (lenght % LOGCAT_BUFFER_SIZE > 0) list.add(lenght);
