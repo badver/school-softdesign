@@ -13,7 +13,7 @@ import java.util.ArrayList;
  */
 public class Lg {
 
-    private static final String PREFIX = "HTC ";
+    private static final String PREFIX = "SCHOOL_";
     public static final int LOGCAT_BUFFER_SIZE = 3000;
 
     /**
@@ -105,7 +105,8 @@ public class Lg {
     }
 
     /**
-     * Generate list of offsets in string.
+     * Generate list of offsets in a string.
+     * Added because it's easy to test.
      *
      * @param lenght text lenght
      * @return The list of offsets
