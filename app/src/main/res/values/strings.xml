@@ -5,4 +5,9 @@
     <string name="button.red">RED</string>
     <string name="button.blue">BLUE</string>
     <string name="checkbox">New checkbox</string>
+    <string name="drawer.profile">Профиль</string>
+    <string name="drawer.contacts">Контакты</string>
+    <string name="drawer.team">Команда</string>
+    <string name="drawer.tasks">Задачи</string>
+    <string name="drawer.setting">Настройки</string>
 </resources>

@@ -3,6 +3,9 @@ package com.softdesign.school.ui.activities;
 import android.content.res.Resources;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.design.widget.NavigationView;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -31,6 +34,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Button mButtonRed;
     private Button mButtonGreen;
     private Button mButtonBlue;
+    private NavigationView mNavigationView;
+    private DrawerLayout mNavigationDrawer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +59,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             window.setStatusBarColor(color);
         }
 
+        mNavigationView = (NavigationView) findViewById(R.id.navigation_view);
+        mNavigationDrawer = (DrawerLayout) findViewById(R.id.navigation_drawer);
+
         setTitle("School Hometask 2");
         mCheckBox = (CheckBox) findViewById(R.id.checkBox);
         mCheckBox.setOnClickListener(this);
@@ -71,6 +79,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mButtonBlue.setOnClickListener(this);
 
         setupToolbar();
+        setupDrawer();
     }
 
     private void setupToolbar() {
@@ -81,6 +90,32 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             actionBar.setHomeAsUpIndicator(R.drawable.ic_menu_24dp);
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
+    }
+
+    private void setupDrawer() {
+        mNavigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.drawer_profile:
+                        mNavigationView.getMenu().findItem(R.id.drawer_profile).setChecked(true);
+                        break;
+                    case R.id.drawer_contacts:
+                        mNavigationView.getMenu().findItem(R.id.drawer_contacts).setChecked(true);
+                        break;
+                    case R.id.drawer_tasks:
+                        mNavigationView.getMenu().findItem(R.id.drawer_tasks).setChecked(true);
+                        break;
+                    case R.id.drawer_team:
+                        mNavigationView.getMenu().findItem(R.id.drawer_team).setChecked(true);
+                        break;
+                    case R.id.drawer_setting:
+                        mNavigationView.getMenu().findItem(R.id.drawer_setting).setChecked(true);
+                        break;
+                }
+                return false;
+            }
+        });
     }
 
     @Override
@@ -130,7 +165,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == android.R.id.home) {
-            Toast.makeText(MainActivity.this, "Menu clicked", Toast.LENGTH_SHORT).show();
+            mNavigationDrawer.openDrawer(GravityCompat.START);
         }
         return super.onOptionsItemSelected(item);
     }
