@@ -58,6 +58,7 @@ public class MainActivity extends AppCompatActivity {
         mNavigationView = (NavigationView) findViewById(R.id.navigation_view);
         mNavigationDrawer = (DrawerLayout) findViewById(R.id.navigation_drawer);
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
+        mFrameContainer = (FrameLayout) findViewById(R.id.main_frame_container);
 
         setupToolbar();
         setupDrawer();
@@ -65,7 +66,8 @@ public class MainActivity extends AppCompatActivity {
         if (savedInstanceState != null) {
 
         } else {
-            getSupportFragmentManager().beginTransaction().replace(R.id.main_frame_container, new ProfileFragment()).commit();
+            mFragment = new ProfileFragment();
+            getSupportFragmentManager().beginTransaction().replace(R.id.main_frame_container, mFragment).commit();
         }
     }
 
@@ -114,6 +116,28 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             }
         });
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        switch (mFrameContainer.getChildAt(0).getId()) {
+            case R.id.fragment_profile:
+                mNavigationView.getMenu().findItem(R.id.drawer_profile).setChecked(true);
+                break;
+            case R.id.fragment_contacts:
+                mNavigationView.getMenu().findItem(R.id.drawer_contacts).setChecked(true);
+                break;
+            case R.id.fragment_tasks:
+                mNavigationView.getMenu().findItem(R.id.drawer_tasks).setChecked(true);
+                break;
+            case R.id.fragment_team:
+                mNavigationView.getMenu().findItem(R.id.drawer_team).setChecked(true);
+                break;
+            case R.id.fragment_settings:
+                mNavigationView.getMenu().findItem(R.id.drawer_setting).setChecked(true);
+                break;
+        }
     }
 
     @Override
