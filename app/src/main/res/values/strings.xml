@@ -10,4 +10,9 @@
     <string name="drawer.team">Команда</string>
     <string name="drawer.tasks">Задачи</string>
     <string name="drawer.setting">Настройки</string>
+    <string name="fragment.contacts.description">Здесь будут контакты</string>
+    <string name="fragment.team.description">Здесь будут команды</string>
+    <string name="fragment.tasks.description">Здесь будут задачи</string>
+    <string name="fragment.settings.description">Здесь будут настройки</string>
+    <string name="fragment.profile.description">Здесь будут профиль</string>
 </resources>
