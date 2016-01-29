@@ -22,7 +22,8 @@ import com.softdesign.school.utils.Lg;
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     public final static String VISIBLE_KEY = "visible";
-    private static int theme = 0;
+    public final static String THEME_KEY = "theme_id";
+    private int mThemeId;
     private String TAG;
     private CheckBox mCheckBox;
     private EditText mEditText;
@@ -38,8 +39,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         TAG = this.getClass().getSimpleName();
         Lg.i(TAG, "======================================");
         Lg.i(TAG, "onCreate");
-        Lg.i(TAG, "Theme: " + theme);
-        setTheme(theme);
+        Lg.i(TAG, "Theme: " + mThemeId);
+        if (savedInstanceState != null) {
+            mThemeId = savedInstanceState.getInt(THEME_KEY);
+        } else {
+            mThemeId = 0;
+        }
+        setTheme(mThemeId);
         setContentView(R.layout.activity_main);
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
@@ -96,17 +102,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 }
                 break;
             case R.id.btn_red:
-                theme = R.style.Red;
+                mThemeId = R.style.Red;
                 Toast.makeText(MainActivity.this, "Red!", Toast.LENGTH_SHORT).show();
                 recreate();
                 break;
             case R.id.btn_green:
-                theme = R.style.Green;
+                mThemeId = R.style.Green;
                 Toast.makeText(MainActivity.this, "Green!", Toast.LENGTH_SHORT).show();
                 recreate();
                 break;
             case R.id.btn_blue:
-                theme = R.style.Blue;
+                mThemeId = R.style.Blue;
                 Toast.makeText(MainActivity.this, "Blue!", Toast.LENGTH_SHORT).show();
                 recreate();
                 break;
@@ -118,6 +124,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onSaveInstanceState(outState);
         Lg.i(TAG, "onSaveInstanceState");
         outState.putBoolean(VISIBLE_KEY, mEditText2.getVisibility() == View.VISIBLE);
+        outState.putInt(THEME_KEY, mThemeId);
     }
 
     @Override
@@ -125,6 +132,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onRestoreInstanceState(savedInstanceState);
         Lg.i(TAG, "onRestoreInstanceState");
         mEditText2.setVisibility(savedInstanceState.getBoolean(VISIBLE_KEY) ? View.VISIBLE : View.INVISIBLE);
+        mThemeId = savedInstanceState.getInt(THEME_KEY);
     }
 
     @Override
