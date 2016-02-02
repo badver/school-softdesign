@@ -32,7 +32,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Андрей Парваткин"
-            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textAppearance="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"
+            android:textColor="@color/icon_color"
             android:textSize="@dimen/abc_text_size_body_1_material" />
 
         <TextView
@@ -41,7 +42,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="badver@mail.ru"
-            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@color/icon_color"
+            android:textAppearance="@style/TextAppearance.AppCompat.Widget.ActionMode.Subtitle"
             android:textSize="@dimen/abc_text_size_body_2_material" />
     </LinearLayout>
 
@@ -52,6 +54,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:gravity="center"
+        android:elevation="@dimen/toolbar_elevation"
         android:layout_alignTop="@+id/imageView">
 
         <ImageView
@@ -67,6 +70,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
+            android:textColor="@color/colorAccent"
             android:text="100" />
     </RelativeLayout>
 
