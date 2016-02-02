@@ -25,7 +25,10 @@ import com.softdesign.school.ui.fragments.TeamFragment;
 import com.softdesign.school.utils.Lg;
 
 public class MainActivity extends AppCompatActivity {
-    private static int theme = 0;
+
+    public final static String VISIBLE_KEY = "visible";
+    public final static String THEME_KEY = "theme_id";
+    private int mThemeId;
     private String TAG;
     private Toolbar mToolbar;
     private NavigationView mNavigationView;
@@ -39,8 +42,13 @@ public class MainActivity extends AppCompatActivity {
         TAG = this.getClass().getSimpleName();
         Lg.i(TAG, "======================================");
         Lg.i(TAG, "onCreate");
-        Lg.i(TAG, "Theme: " + theme);
-        setTheme(theme);
+        Lg.i(TAG, "Theme: " + mThemeId);
+        if (savedInstanceState != null) {
+            mThemeId = savedInstanceState.getInt(THEME_KEY);
+        } else {
+            mThemeId = 0;
+        }
+        setTheme(mThemeId);
         setContentView(R.layout.activity_main);
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
@@ -194,6 +202,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onRestart() {
         super.onRestart();
         Lg.i(TAG, "onRestart");
+        
     }
 
 
