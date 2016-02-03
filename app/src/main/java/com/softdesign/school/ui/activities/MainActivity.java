@@ -3,9 +3,11 @@ package com.softdesign.school.ui.activities;
 import android.content.res.Resources;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.GravityCompat;
+import android.support.v4.view.ViewCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -26,8 +28,8 @@ import com.softdesign.school.utils.Lg;
 
 public class MainActivity extends AppCompatActivity {
 
-    public final static String VISIBLE_KEY = "visible";
     public final static String THEME_KEY = "theme_id";
+    public final static String EXTRA_IMAGE = "extra_image";
     private int mThemeId;
     private String TAG;
     private Toolbar mToolbar;
@@ -35,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
     private DrawerLayout mNavigationDrawer;
     private Fragment mFragment;
     private FrameLayout mFrameContainer;
+    private CollapsingToolbarLayout mCollapsingToolbarLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,6 +90,9 @@ public class MainActivity extends AppCompatActivity {
             actionBar.setHomeAsUpIndicator(R.drawable.ic_menu_24dp);
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
+        ViewCompat.setTransitionName(findViewById(R.id.app_bar_layout), EXTRA_IMAGE);
+        mCollapsingToolbarLayout = (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar);
+        mCollapsingToolbarLayout.setExpandedTitleColor(getResources().getColor(android.R.color.transparent));
     }
 
     private void setupDrawer() {
@@ -96,22 +102,27 @@ public class MainActivity extends AppCompatActivity {
                 switch (item.getItemId()) {
                     case R.id.drawer_profile:
                         mFragment = new ProfileFragment();
+                        mCollapsingToolbarLayout.setTitle(getString(R.string.drawer_profile));
                         mNavigationView.getMenu().findItem(R.id.drawer_profile).setChecked(true);
                         break;
                     case R.id.drawer_contacts:
                         mFragment = new ContactsFragment();
+                        mCollapsingToolbarLayout.setTitle(getString(R.string.drawer_contacts));
                         mNavigationView.getMenu().findItem(R.id.drawer_contacts).setChecked(true);
                         break;
                     case R.id.drawer_tasks:
                         mFragment = new TasksFragment();
+                        mCollapsingToolbarLayout.setTitle(getString(R.string.drawer_tasks));
                         mNavigationView.getMenu().findItem(R.id.drawer_tasks).setChecked(true);
                         break;
                     case R.id.drawer_team:
                         mFragment = new TeamFragment();
+                        mCollapsingToolbarLayout.setTitle(getString(R.string.drawer_team));
                         mNavigationView.getMenu().findItem(R.id.drawer_team).setChecked(true);
                         break;
                     case R.id.drawer_setting:
                         mFragment = new SettingsFragment();
+                        mCollapsingToolbarLayout.setTitle(getString(R.string.drawer_setting));
                         mNavigationView.getMenu().findItem(R.id.drawer_setting).setChecked(true);
                         break;
                 }
@@ -202,7 +213,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onRestart() {
         super.onRestart();
         Lg.i(TAG, "onRestart");
-        
+
     }
 
 
