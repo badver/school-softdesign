@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/nav_header_height"
+    android:background="@drawable/background"
+    android:paddingBottom="8dp"
+    android:paddingTop="@dimen/nav_header_top"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    >
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/imageView"
+        android:layout_width="@dimen/nav_header_avatar_size"
+        android:layout_height="@dimen/nav_header_avatar_size"
+        android:layout_above="@+id/linearLayout"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:src="@drawable/avatar" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/nav_header_info_height"
+        android:layout_alignParentBottom="true"
+        android:gravity="left|center_vertical"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/txtName"
+            style="@style/Blue"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Андрей Парваткин"
+            android:textAppearance="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"
+            android:textColor="@color/icon_color"
+            android:textSize="@dimen/abc_text_size_body_1_material" />
+
+        <TextView
+            android:id="@+id/txtEmail"
+            style="@style/Blue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="badver@mail.ru"
+            android:textColor="@color/icon_color"
+            android:textAppearance="@style/TextAppearance.AppCompat.Widget.ActionMode.Subtitle"
+            android:textSize="@dimen/abc_text_size_body_2_material" />
+    </LinearLayout>
+
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:gravity="center"
+        android:elevation="@dimen/toolbar_elevation"
+        android:layout_alignTop="@+id/imageView">
+
+        <ImageView
+            android:id="@+id/imageCircle"
+            android:layout_width="@android:dimen/app_icon_size"
+            android:layout_height="@android:dimen/app_icon_size"
+            android:layout_centerInParent="true"
+            android:scaleType="fitCenter"
+            android:src="@drawable/ic_brightness_1_24dp" />
+
+        <TextView
+            android:id="@+id/txtRate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:textColor="@color/colorAccent"
+            android:text="100" />
+    </RelativeLayout>
+
+</RelativeLayout>

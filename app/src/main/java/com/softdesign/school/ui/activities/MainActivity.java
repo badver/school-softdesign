@@ -202,7 +202,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onRestart() {
         super.onRestart();
         Lg.i(TAG, "onRestart");
-
+        
     }
-    
+
+
 }
