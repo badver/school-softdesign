@@ -1,15 +1,229 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/fragment_profile"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:paddingTop="28dp">
+    android:layout_height="match_parent">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:text="@string/fragment.profile.description" />
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-</LinearLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_small"
+            android:minHeight="@dimen/list_item">
+
+            <ImageView
+                android:layout_width="@dimen/icon_size"
+                android:layout_height="@dimen/icon_size"
+                android:layout_centerVertical="true"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/spacing_normal"
+                android:layout_marginStart="@dimen/spacing_normal"
+                android:src="@drawable/ic_call_24dp" />
+
+            <LinearLayout
+                android:id="@+id/linearLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/spacing_large"
+                android:layout_marginStart="@dimen/spacing_large"
+                android:orientation="vertical"
+                android:paddingEnd="@dimen/spacing_large"
+                android:paddingRight="@dimen/spacing_large">
+
+                <TextView
+                    android:id="@+id/txt_phone_value"
+                    style="@style/font.medium"
+                    android:text="@string/fragment.profile.text.phone" />
+
+                <TextView
+                    android:id="@+id/txt_phone_label"
+                    style="@style/font.regular"
+                    android:text="@string/fragment.profile.label.phone"
+                    android:textAlignment="viewStart"
+                    tools:ignore="RtlCompat,UnusedAttribute" />
+
+            </LinearLayout>
+
+            <View style="@style/profile_strip" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_small"
+            android:minHeight="@dimen/list_item">
+
+            <ImageView
+                android:layout_width="@dimen/icon_size"
+                android:layout_height="@dimen/icon_size"
+                android:layout_centerVertical="true"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/spacing_normal"
+                android:layout_marginStart="@dimen/spacing_normal"
+                android:src="@drawable/ic_email_24dp" />
+
+            <LinearLayout
+                android:id="@+id/linearLayout_msg"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/spacing_large"
+                android:layout_marginStart="@dimen/spacing_large"
+                android:orientation="vertical"
+                android:paddingEnd="@dimen/spacing_large"
+                android:paddingRight="@dimen/spacing_large">
+
+                <TextView
+                    android:id="@+id/txt_message_value"
+                    style="@style/font.medium"
+                    android:text="@string/fragment.profile.text.email"
+                    android:textSize="@dimen/font_large" />
+
+                <TextView
+                    android:id="@+id/txt_email_label"
+                    style="@style/font.regular"
+                    android:text="@string/fragment.profile.label.email"
+                    android:textAlignment="viewStart" />
+
+            </LinearLayout>
+
+            <View style="@style/profile_strip" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_small"
+            android:minHeight="@dimen/list_item">
+
+            <ImageView
+                android:layout_width="@dimen/icon_size"
+                android:layout_height="@dimen/icon_size"
+                android:layout_centerVertical="true"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/spacing_normal"
+                android:layout_marginStart="@dimen/spacing_normal"
+                android:src="@drawable/vk_24dp" />
+
+            <LinearLayout
+                android:id="@+id/linearLayout_vk"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/spacing_large"
+                android:layout_marginStart="@dimen/spacing_large"
+                android:orientation="vertical"
+                android:paddingEnd="@dimen/spacing_large"
+                android:paddingRight="@dimen/spacing_large">
+
+                <TextView
+                    android:id="@+id/txt_vk_value"
+                    style="@style/font.medium"
+                    android:text="@string/fragment.profile.text.vk" />
+
+                <TextView
+                    android:id="@+id/txt_vk_label"
+                    style="@style/font.regular"
+                    android:text="@string/fragment.profile.label.vk" />
+
+            </LinearLayout>
+
+            <View style="@style/profile_strip" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_small"
+            android:minHeight="@dimen/list_item">
+
+            <ImageView
+                android:layout_width="@dimen/icon_size"
+                android:layout_height="@dimen/icon_size"
+                android:layout_centerVertical="true"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/spacing_normal"
+                android:layout_marginStart="@dimen/spacing_normal"
+                android:src="@drawable/github" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/spacing_large"
+                android:layout_marginStart="@dimen/spacing_large"
+                android:orientation="vertical"
+                android:paddingEnd="@dimen/spacing_large"
+                android:paddingRight="@dimen/spacing_large">
+
+                <TextView
+                    android:id="@+id/txt_github_value"
+                    style="@style/font.medium"
+                    android:text="@string/fragment.profile.text.github" />
+
+                <TextView
+                    android:id="@+id/txt_github_label"
+                    style="@style/font.regular"
+                    android:text="@string/fragment.profile.label.github"
+                    android:textAlignment="viewStart" />
+
+            </LinearLayout>
+
+            <View style="@style/profile_strip" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_small"
+            android:minHeight="@dimen/list_item">
+
+            <ImageView
+                android:layout_width="@dimen/icon_size"
+                android:layout_height="@dimen/icon_size"
+                android:layout_centerVertical="true"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/spacing_normal"
+                android:layout_marginStart="@dimen/spacing_normal"
+                android:src="@drawable/ic_face_24dp" />
+
+            <LinearLayout
+                android:id="@+id/linearLayout_about"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/spacing_large"
+                android:layout_marginStart="@dimen/spacing_large"
+                android:orientation="vertical"
+                android:paddingEnd="@dimen/spacing_large"
+                android:paddingRight="@dimen/spacing_large">
+
+                <TextView
+                    android:id="@+id/txt_about_value"
+                    style="@style/font.medium"
+                    android:text="@string/fragment.profile.text.about" />
+
+                <TextView
+                    android:id="@+id/txt_about_label"
+                    style="@style/font.regular"
+                    android:text="@string/fragment.profile.label.about"
+                    android:textAlignment="viewStart" />
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+</android.support.v4.widget.NestedScrollView>
