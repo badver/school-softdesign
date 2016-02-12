@@ -10,6 +10,11 @@
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
+    <style name="toolbar_title">
+        <item name="android:textSize">@dimen/toolbar_rating_size</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
     <style name="Blue" parent="AppTheme">
         <item name="colorPrimary">@android:color/holo_blue_light</item>
         <item name="colorPrimaryDark">@android:color/holo_blue_dark</item>
@@ -56,7 +61,16 @@
         <item name="android:background">@android:color/darker_gray</item>
         <item name="android:layout_alignParentBottom">true</item>
         <item name="android:layout_alignParentLeft">true</item>
-        <item name="android:layout_marginLeft">@dimen/spacing_larger</item>
+        <item name="android:layout_marginLeft">@dimen/spacing_large</item>
     </style>
+
+    <style name="Toolbar.TitleText" parent="TextAppearance.Widget.AppCompat.Toolbar.Title">
+        <item name="android:textSize">10sp</item>
+    </style>
+
+    <style name="CollapsedToolbarTitleText" parent="@android:style/TextAppearance.Material.Widget.Toolbar.Title">
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+
 
 </resources>

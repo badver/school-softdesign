@@ -20,6 +20,7 @@
     <dimen name="spacing_larger">72dp</dimen>
 
     <dimen name="toolbar_collapsing_image">256dp</dimen>
+    <dimen name="toolbar_rating_size">24sp</dimen>
 
     <!-- Height -->
     <dimen name="list_item">72dp</dimen>
