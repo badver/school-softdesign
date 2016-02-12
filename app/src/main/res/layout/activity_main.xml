@@ -24,16 +24,21 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/toolbar_collapsing_image"
                 android:fitsSystemWindows="true"
+
                 app:collapsedTitleGravity="center_vertical"
                 app:collapsedTitleTextAppearance="@style/CollapsedToolbarTitleText"
+
                 app:contentScrim="?attr/colorPrimary"
-                app:expandedTitleMarginBottom="@dimen/activity_vertical_margin"
-                app:expandedTitleMarginEnd="64dp"
-                app:expandedTitleMarginStart="48dp"
-                app:expandedTitleTextAppearance="@android:color/white"
-                app:layout_scrollFlags="scroll|snap|exitUntilCollapsed"
+
+                app:expandedTitleTextAppearance="@style/CollapsedToolbarTitleText"
+                app:expandedTitleMarginStart="@dimen/spacing_larger"
+                app:expandedTitleMarginBottom="@dimen/spacing_medium"
+                app:expandedTitleGravity="bottom"
+
+                app:layout_scrollFlags="scroll|exitUntilCollapsed|snap"
                 app:statusBarScrim="@color/colorPrimaryDark"
                 app:titleEnabled="true"
+                app:title="@string/fragment.profile.text.name"
                 app:toolbarId="@+id/toolbar">
 
 
@@ -49,7 +54,7 @@
                     android:id="@+id/toolbar"
                     android:layout_width="match_parent"
                     android:layout_height="?attr/actionBarSize"
-                    android:titleTextColor="@color/icon_color"
+                    android:titleTextColor="@android:color/white"
                     app:layout_collapseMode="pin"
                     app:popupTheme="@style/ThemeOverlay.AppCompat.Dark" />
 
@@ -63,7 +68,6 @@
                     android:layout_marginBottom="@dimen/activity_vertical_margin"
                     android:layout_marginLeft="@dimen/activity_horizontal_margin"
                     android:elevation="@dimen/toolbar_elevation"
-                    android:gravity="center"
                     app:layout_collapseMode="pin">
 
                     <ImageView

@@ -3,7 +3,10 @@ package com.softdesign.school.ui.activities;
 import android.content.res.Resources;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
+import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.GravityCompat;
@@ -38,6 +41,9 @@ public class MainActivity extends AppCompatActivity {
     private Fragment mFragment;
     private FrameLayout mFrameContainer;
     private CollapsingToolbarLayout mCollapsingToolbarLayout;
+    private AppBarLayout mAppBar;
+
+    private boolean isCollapsed;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,6 +72,7 @@ public class MainActivity extends AppCompatActivity {
             window.setStatusBarColor(color);
         }
 
+        mAppBar = (AppBarLayout) findViewById(R.id.app_bar_layout);
         mNavigationView = (NavigationView) findViewById(R.id.navigation_view);
         mNavigationDrawer = (DrawerLayout) findViewById(R.id.navigation_drawer);
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -74,12 +81,26 @@ public class MainActivity extends AppCompatActivity {
         setupToolbar();
         setupDrawer();
 
-        if (savedInstanceState != null) {
-
-        } else {
+        if (savedInstanceState == null) {
             mFragment = new ProfileFragment();
             getSupportFragmentManager().beginTransaction().replace(R.id.main_frame_container, mFragment).commit();
+            isCollapsed = false;
         }
+    }
+
+    private void setDrag(final boolean isDrag, AppBarLayout appBar) {
+        Lg.d(TAG, "Drag is " + isDrag);
+        ((CoordinatorLayout.LayoutParams) appBar.getLayoutParams()).setBehavior(new AppBarLayout.Behavior());
+
+        CoordinatorLayout.LayoutParams lp = (CoordinatorLayout.LayoutParams) appBar.getLayoutParams();
+
+        AppBarLayout.Behavior behavior = (AppBarLayout.Behavior) lp.getBehavior();
+        behavior.setDragCallback(new AppBarLayout.Behavior.DragCallback() {
+            @Override
+            public boolean canDrag(@NonNull AppBarLayout appBarLayout) {
+                return isDrag;
+            }
+        });
     }
 
     private void setupToolbar() {
@@ -92,7 +113,49 @@ public class MainActivity extends AppCompatActivity {
         }
         ViewCompat.setTransitionName(findViewById(R.id.app_bar_layout), EXTRA_IMAGE);
         mCollapsingToolbarLayout = (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar);
-        mCollapsingToolbarLayout.setExpandedTitleColor(getResources().getColor(android.R.color.transparent));
+    }
+
+    public void lockAppBar(boolean collapse) {
+        if (isCollapsed != collapse) {
+            isCollapsed = collapse;
+            mAppBar.setExpanded(!collapse, !collapse);
+            if (collapse) {
+                AppBarLayout.OnOffsetChangedListener mListener = new AppBarLayout.OnOffsetChangedListener() {
+                    @Override
+                    public void onOffsetChanged(AppBarLayout mAppBar, int verticalOffset) {
+                        if (mCollapsingToolbarLayout.getHeight() + verticalOffset <= ViewCompat.getMinimumHeight(mCollapsingToolbarLayout) + getStatusBarHeight()) {
+                            lockToolbar();
+                            mAppBar.removeOnOffsetChangedListener(this);
+                        }
+                    }
+                };
+                mAppBar.addOnOffsetChangedListener(mListener);
+            } else {
+                unlockToolbar();
+            }
+            setDrag(!collapse, mAppBar);
+        }
+    }
+
+    public int getStatusBarHeight() {
+        int result = 0;
+        int resourceId = getResources().getIdentifier("status_bar_height", "dimen", "android");
+        if (resourceId > 0) {
+            result = getResources().getDimensionPixelSize(resourceId);
+        }
+        return result;
+    }
+
+    private void lockToolbar() {
+        AppBarLayout.LayoutParams params = (AppBarLayout.LayoutParams) mCollapsingToolbarLayout.getLayoutParams();
+        params.setScrollFlags(0);
+        mCollapsingToolbarLayout.setLayoutParams(params);
+    }
+
+    private void unlockToolbar() {
+        AppBarLayout.LayoutParams params = (AppBarLayout.LayoutParams) mCollapsingToolbarLayout.getLayoutParams();
+        params.setScrollFlags(AppBarLayout.LayoutParams.SCROLL_FLAG_SCROLL | AppBarLayout.LayoutParams.SCROLL_FLAG_EXIT_UNTIL_COLLAPSED);
+        mCollapsingToolbarLayout.setLayoutParams(params);
     }
 
     private void setupDrawer() {
@@ -102,28 +165,33 @@ public class MainActivity extends AppCompatActivity {
                 switch (item.getItemId()) {
                     case R.id.drawer_profile:
                         mFragment = new ProfileFragment();
-                        mCollapsingToolbarLayout.setTitle(getString(R.string.drawer_profile));
+                        mCollapsingToolbarLayout.setTitle(getString(R.string.fragment_profile_text_name));
                         mNavigationView.getMenu().findItem(R.id.drawer_profile).setChecked(true);
+                        lockAppBar(false);
                         break;
                     case R.id.drawer_contacts:
                         mFragment = new ContactsFragment();
                         mCollapsingToolbarLayout.setTitle(getString(R.string.drawer_contacts));
                         mNavigationView.getMenu().findItem(R.id.drawer_contacts).setChecked(true);
-                        break;
-                    case R.id.drawer_tasks:
-                        mFragment = new TasksFragment();
-                        mCollapsingToolbarLayout.setTitle(getString(R.string.drawer_tasks));
-                        mNavigationView.getMenu().findItem(R.id.drawer_tasks).setChecked(true);
+                        lockAppBar(true);
                         break;
                     case R.id.drawer_team:
                         mFragment = new TeamFragment();
                         mCollapsingToolbarLayout.setTitle(getString(R.string.drawer_team));
                         mNavigationView.getMenu().findItem(R.id.drawer_team).setChecked(true);
+                        lockAppBar(true);
+                        break;
+                    case R.id.drawer_tasks:
+                        mFragment = new TasksFragment();
+                        mCollapsingToolbarLayout.setTitle(getString(R.string.drawer_tasks));
+                        mNavigationView.getMenu().findItem(R.id.drawer_tasks).setChecked(true);
+                        lockAppBar(true);
                         break;
                     case R.id.drawer_setting:
                         mFragment = new SettingsFragment();
                         mCollapsingToolbarLayout.setTitle(getString(R.string.drawer_setting));
                         mNavigationView.getMenu().findItem(R.id.drawer_setting).setChecked(true);
+                        lockAppBar(true);
                         break;
                 }
 

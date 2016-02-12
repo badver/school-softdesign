@@ -34,6 +34,9 @@
 
     <string name="fragment.profile.label.about">О себе</string>
     <string name="fragment.profile.text.about">C++ / Python / Java Developer</string>
+
+    <string name="fragment.profile.text.name">Андрей Парваткин</string>
+
     <string name="my_rating">100</string>
 
 </resources>

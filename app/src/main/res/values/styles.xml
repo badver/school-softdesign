@@ -70,6 +70,7 @@
 
     <style name="CollapsedToolbarTitleText" parent="@android:style/TextAppearance.Material.Widget.Toolbar.Title">
         <item name="android:textColor">@android:color/white</item>
+        <item name="android:textSize">@dimen/font_larger</item>
     </style>
 
 

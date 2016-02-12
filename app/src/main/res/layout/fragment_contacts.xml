@@ -3,20 +3,11 @@
     android:id="@+id/fragment_contacts"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:layout_margin="@dimen/spacing_normal">
 
-    <RelativeLayout
-        style="@style/list_item"
-        android:layout_marginTop="@dimen/spacing_small">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
-            android:layout_gravity="center"
-            android:text="@string/fragment.contacts.description" />
-
-    </RelativeLayout>
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycle_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
 
 </RelativeLayout>
