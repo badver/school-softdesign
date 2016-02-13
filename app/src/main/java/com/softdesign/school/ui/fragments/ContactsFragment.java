@@ -29,7 +29,7 @@ public class ContactsFragment extends Fragment {
 
         FloatingActionButton actionButton = (FloatingActionButton) getActivity().findViewById(R.id.fab);
         CoordinatorLayout.LayoutParams params = (CoordinatorLayout.LayoutParams) actionButton.getLayoutParams();
-        params.setAnchorId(R.id.main_frame_container);
+        params.setAnchorId(R.id.coordinator);
         params.anchorGravity= Gravity.RIGHT|Gravity.BOTTOM;
         actionButton.setImageResource(R.drawable.ic_add_24dp);
         actionButton.show();
