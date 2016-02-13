@@ -167,31 +167,26 @@ public class MainActivity extends AppCompatActivity {
                         mFragment = new ProfileFragment();
                         mCollapsingToolbarLayout.setTitle(getString(R.string.fragment_profile_text_name));
                         mNavigationView.getMenu().findItem(R.id.drawer_profile).setChecked(true);
-                        lockAppBar(false);
                         break;
                     case R.id.drawer_contacts:
                         mFragment = new ContactsFragment();
                         mCollapsingToolbarLayout.setTitle(getString(R.string.drawer_contacts));
                         mNavigationView.getMenu().findItem(R.id.drawer_contacts).setChecked(true);
-                        lockAppBar(true);
                         break;
                     case R.id.drawer_team:
                         mFragment = new TeamFragment();
                         mCollapsingToolbarLayout.setTitle(getString(R.string.drawer_team));
                         mNavigationView.getMenu().findItem(R.id.drawer_team).setChecked(true);
-                        lockAppBar(true);
                         break;
                     case R.id.drawer_tasks:
                         mFragment = new TasksFragment();
                         mCollapsingToolbarLayout.setTitle(getString(R.string.drawer_tasks));
                         mNavigationView.getMenu().findItem(R.id.drawer_tasks).setChecked(true);
-                        lockAppBar(true);
                         break;
                     case R.id.drawer_setting:
                         mFragment = new SettingsFragment();
                         mCollapsingToolbarLayout.setTitle(getString(R.string.drawer_setting));
                         mNavigationView.getMenu().findItem(R.id.drawer_setting).setChecked(true);
-                        lockAppBar(true);
                         break;
                 }
 

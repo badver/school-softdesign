@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.softdesign.school.R;
+import com.softdesign.school.ui.activities.MainActivity;
 
 public class TasksFragment extends Fragment {
     @Nullable
@@ -15,6 +16,7 @@ public class TasksFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View temp = inflater.inflate(R.layout.fragment_tasks, null, false);
         getActivity().setTitle(getResources().getString(R.string.drawer_tasks));
+        ((MainActivity) getActivity()).lockAppBar(true);
         return temp;
     }
 }
