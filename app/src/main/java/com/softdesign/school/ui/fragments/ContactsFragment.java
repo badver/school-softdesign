@@ -31,8 +31,7 @@ public class ContactsFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View temp = inflater.inflate(R.layout.fragment_contacts, null, false);
-        return temp;
+        return inflater.inflate(R.layout.fragment_contacts, null, false);
     }
 
     @Override
@@ -67,12 +66,10 @@ public class ContactsFragment extends Fragment {
         mUsers.add(new User("Kaye", "Santo", getResources().getDrawable(R.drawable.ic_face_24dp)));
         mUsers.add(new User("Cly", "Dasse", getResources().getDrawable(R.drawable.ic_face_24dp)));
         mUsers.add(new User("Ianthe", "Packer", getResources().getDrawable(R.drawable.ic_face_24dp)));
-
         mUsers.add(new User("Cleve", "Arnold", getResources().getDrawable(R.drawable.ic_face_24dp)));
         mUsers.add(new User("Marylee", "Pliego", getResources().getDrawable(R.drawable.ic_face_24dp)));
         mUsers.add(new User("Dory", "Sen", getResources().getDrawable(R.drawable.ic_face_24dp)));
         mUsers.add(new User("Kikelia", "Huber", getResources().getDrawable(R.drawable.ic_face_24dp)));
-
         mUsers.add(new User("John", "Maugham", getResources().getDrawable(R.drawable.ic_face_24dp)));
         mUsers.add(new User("Perceval", "Reynolds", getResources().getDrawable(R.drawable.ic_face_24dp)));
         mUsers.add(new User("Billie", "Hubsch", getResources().getDrawable(R.drawable.ic_face_24dp)));

@@ -30,7 +30,7 @@ public class ProfileFragment extends Fragment {
         FloatingActionButton actionButton = (FloatingActionButton) getActivity().findViewById(R.id.fab);
         CoordinatorLayout.LayoutParams params = (CoordinatorLayout.LayoutParams) actionButton.getLayoutParams();
         params.setAnchorId(R.id.app_bar_layout);
-        params.anchorGravity= Gravity.RIGHT|Gravity.BOTTOM;
+        params.anchorGravity = Gravity.RIGHT | Gravity.BOTTOM;
         actionButton.setImageResource(R.drawable.ic_mode_edit_24dp);
     }
 }

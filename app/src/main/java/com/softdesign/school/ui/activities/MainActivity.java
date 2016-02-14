@@ -65,13 +65,6 @@ public class MainActivity extends AppCompatActivity {
         }
 
         ButterKnife.bind(this);
-
-//        mAppBar = (AppBarLayout) findViewById(R.id.app_bar_layout);
-//        mNavigationView = (NavigationView) findViewById(R.id.navigation_view);
-//        mNavigationDrawer = (DrawerLayout) findViewById(R.id.navigation_drawer);
-//        mToolbar = (Toolbar) findViewById(R.id.toolbar);
-//        mFrameContainer = (FrameLayout) findViewById(R.id.main_frame_container);
-
         setupToolbar();
         setupDrawer();
 
@@ -92,7 +85,6 @@ public class MainActivity extends AppCompatActivity {
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
         ViewCompat.setTransitionName(findViewById(R.id.app_bar_layout), EXTRA_IMAGE);
-//        mCollapsingToolbarLayout = (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar);
     }
 
     private void setupDrawer() {
@@ -124,6 +116,8 @@ public class MainActivity extends AppCompatActivity {
                         mFragment = new SettingsFragment();
                         mCollapsingToolbarLayout.setTitle(getString(R.string.drawer_setting));
                         mNavigationView.getMenu().findItem(R.id.drawer_setting).setChecked(true);
+                        break;
+                    default:
                         break;
                 }
 
@@ -178,6 +172,8 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case R.id.fragment_settings:
                 mNavigationView.getMenu().findItem(R.id.drawer_setting).setChecked(true);
+                break;
+            default:
                 break;
         }
     }
