@@ -31,9 +31,7 @@ import com.softdesign.school.utils.Lg;
 
 public class MainActivity extends AppCompatActivity {
 
-    public final static String THEME_KEY = "theme_id";
     public final static String EXTRA_IMAGE = "extra_image";
-    private int mThemeId;
     private String TAG;
     private Toolbar mToolbar;
     private NavigationView mNavigationView;
@@ -49,15 +47,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         TAG = this.getClass().getSimpleName();
-        Lg.i(TAG, "======================================");
-        Lg.i(TAG, "onCreate");
-        Lg.i(TAG, "Theme: " + mThemeId);
-        if (savedInstanceState != null) {
-            mThemeId = savedInstanceState.getInt(THEME_KEY);
-        } else {
-            mThemeId = 0;
-        }
-        setTheme(mThemeId);
+
         setContentView(R.layout.activity_main);
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
@@ -77,7 +67,6 @@ public class MainActivity extends AppCompatActivity {
         mNavigationDrawer = (DrawerLayout) findViewById(R.id.navigation_drawer);
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
         mFrameContainer = (FrameLayout) findViewById(R.id.main_frame_container);
-
 
         setupToolbar();
         setupDrawer();
@@ -144,59 +133,12 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    @Override
-    protected void onStop() {
-        super.onStop();
-        Lg.i(TAG, "onStop");
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        Lg.i(TAG, "onDestroy");
-    }
-
     public void lockAppBar(boolean collapse) {
         if (isCollapsed != collapse) {
             isCollapsed = collapse;
-            mAppBar.setExpanded(!collapse); // !collapse
-            if (collapse) {
-                AppBarLayout.OnOffsetChangedListener mListener = new AppBarLayout.OnOffsetChangedListener() {
-                    @Override
-                    public void onOffsetChanged(AppBarLayout mAppBar, int verticalOffset) {
-                        if (mCollapsingToolbarLayout.getHeight() + verticalOffset <= ViewCompat.getMinimumHeight(mCollapsingToolbarLayout) + getStatusBarHeight()) {
-                            lockToolbar();
-                            mAppBar.removeOnOffsetChangedListener(this);
-                        }
-                    }
-                };
-                mAppBar.addOnOffsetChangedListener(mListener);
-            } else {
-                unlockToolbar();
-            }
+            mAppBar.setExpanded(!collapse, !collapse);
             setDrag(!collapse, mAppBar);
         }
-    }
-
-    public int getStatusBarHeight() {
-        int result = 0;
-        int resourceId = getResources().getIdentifier("status_bar_height", "dimen", "android");
-        if (resourceId > 0) {
-            result = getResources().getDimensionPixelSize(resourceId);
-        }
-        return result;
-    }
-
-    private void lockToolbar() {
-        AppBarLayout.LayoutParams params = (AppBarLayout.LayoutParams) mCollapsingToolbarLayout.getLayoutParams();
-        params.setScrollFlags(0);
-        mCollapsingToolbarLayout.setLayoutParams(params);
-    }
-
-    private void unlockToolbar() {
-        AppBarLayout.LayoutParams params = (AppBarLayout.LayoutParams) mCollapsingToolbarLayout.getLayoutParams();
-        params.setScrollFlags(AppBarLayout.LayoutParams.SCROLL_FLAG_SCROLL | AppBarLayout.LayoutParams.SCROLL_FLAG_EXIT_UNTIL_COLLAPSED);
-        mCollapsingToolbarLayout.setLayoutParams(params);
     }
 
     private void setDrag(final boolean isDrag, AppBarLayout appBar) {
@@ -237,49 +179,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onPause() {
-        super.onPause();
-        Lg.i(TAG, "onPause");
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        Lg.i(TAG, "onResume");
-    }
-
-    @Override
-    public void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
-        Lg.i(TAG, "onSaveInstanceState");
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-        Lg.i(TAG, "onStart");
-    }
-
-    @Override
-    protected void onRestoreInstanceState(Bundle savedInstanceState) {
-        super.onRestoreInstanceState(savedInstanceState);
-        Lg.i(TAG, "onRestoreInstanceState");
-    }
-
-    @Override
-    protected void onRestart() {
-        super.onRestart();
-        Lg.i(TAG, "onRestart");
-
-    }
-
-    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == android.R.id.home) {
             mNavigationDrawer.openDrawer(GravityCompat.START);
         }
         return super.onOptionsItemSelected(item);
     }
-
-
 }

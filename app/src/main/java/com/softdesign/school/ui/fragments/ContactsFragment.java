@@ -38,19 +38,6 @@ public class ContactsFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View temp = inflater.inflate(R.layout.fragment_contacts, null, false);
-        getActivity().setTitle(getResources().getString(R.string.drawer_contacts));
-        MainActivity activity = (MainActivity) getActivity();
-        activity.lockAppBar(true);
-
-        generateData();
-
-        mRecyclerView = (RecyclerView) temp.findViewById(R.id.recycle_view);
-        mLayoutManager = new LinearLayoutManager(activity);
-        mRecyclerView.setLayoutManager(mLayoutManager);
-        mAdapter = new UsersAdapter(mUsers);
-        mRecyclerView.setAdapter(mAdapter);
-//        mRecyclerView.setHasFixedSize(false);
-
         return temp;
     }
 
@@ -75,6 +62,18 @@ public class ContactsFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
+        getActivity().setTitle(getResources().getString(R.string.drawer_contacts));
+        MainActivity activity = (MainActivity) getActivity();
+
+        generateData();
+
+        mRecyclerView = (RecyclerView) activity.findViewById(R.id.recycle_view);
+        mLayoutManager = new LinearLayoutManager(activity);
+        mRecyclerView.setLayoutManager(mLayoutManager);
+        mAdapter = new UsersAdapter(mUsers);
+        mRecyclerView.setAdapter(mAdapter);
+        mRecyclerView.setNestedScrollingEnabled(false);
+
         FloatingActionButton actionButton = (FloatingActionButton) getActivity().findViewById(R.id.fab);
         CoordinatorLayout.LayoutParams params = (CoordinatorLayout.LayoutParams) actionButton.getLayoutParams();
         params.setAnchorId(R.id.coordinator);
@@ -82,5 +81,7 @@ public class ContactsFragment extends Fragment {
         actionButton.setImageResource(R.drawable.ic_add_24dp);
         actionButton.setLayoutParams(params);
         actionButton.show();
+
+        activity.lockAppBar(true);
     }
 }
