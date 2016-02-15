@@ -1,5 +1,6 @@
 package com.softdesign.school.ui.adapters;
 
+import android.graphics.drawable.Drawable;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -28,8 +29,8 @@ public class UsersAdapter extends RecyclerView.Adapter<UserViewHolder> {
     @Override
     public void onBindViewHolder(UserViewHolder holder, int position) {
         User user = mUsers.get(position);
-        holder.setFullname(user.getFirstName() + " " + user.getLastName());
-        holder.setAvatar(user.getImage());
+        holder.setFullname(user.mFirstName + " " + user.mLastName);
+        holder.setAvatar(Drawable.createFromPath(user.mImage));
     }
 
     @Override

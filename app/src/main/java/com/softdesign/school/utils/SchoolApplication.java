@@ -1,10 +1,11 @@
 package com.softdesign.school.utils;
 
-import android.app.Application;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
-public class SchoolApplication extends Application {
+import com.activeandroid.ActiveAndroid;
+
+public class SchoolApplication extends com.activeandroid.app.Application {
 
     private static SharedPreferences preferences;
 
@@ -16,5 +17,6 @@ public class SchoolApplication extends Application {
     public void onCreate() {
         super.onCreate();
         preferences = PreferenceManager.getDefaultSharedPreferences(this);
+        ActiveAndroid.initialize(this);
     }
 }

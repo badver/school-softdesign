@@ -1,63 +1,26 @@
 package com.softdesign.school.data.storage.models;
 
-import android.graphics.drawable.Drawable;
+import com.activeandroid.annotation.Column;
+import com.activeandroid.annotation.Table;
 
+@Table(name = "Users")
 public class User {
-    private int mId;
-    private String mFirstName;
-    private String mLastName;
-    private String mEmail;
-    private String mPhoneNumber;
-    private Drawable mImage;
-    private String mVkProfile;
-    private String mGithubRepo;
-    private int mRate;
-    private int mHometask;
+    @Column(name = "first_name") public String mFirstName;
+    @Column(name = "last_name") public String mLastName;
+    @Column(name = "email") public String mEmail;
+    @Column(name = "phone") public String mPhoneNumber;
+    @Column(name = "image") public String mImage;
+    @Column(name = "vk_link") public String mVkProfile;
+    @Column(name = "github_link") public String mGithubRepo;
+    @Column(name = "rate") public int mRate;
+    @Column(name = "hometask") public int mHometask;
 
-    public User(String lastName, String firstName, Drawable image) {
+    public User() {
+    }
+
+    public User(String lastName, String firstName, String image) {
         this.mFirstName = firstName;
         this.mLastName = lastName;
         this.mImage = image;
     }
-
-    public int getId() {
-        return mId;
-    }
-
-    public String getFirstName() {
-        return mFirstName;
-    }
-
-    public String getLastName() {
-        return mLastName;
-    }
-
-    public String getEmail() {
-        return mEmail;
-    }
-
-    public String getPhoneNumber() {
-        return mPhoneNumber;
-    }
-
-    public Drawable getImage() {
-        return mImage;
-    }
-
-    public String getVkProfile() {
-        return mVkProfile;
-    }
-
-    public String getGithubRepo() {
-        return mGithubRepo;
-    }
-
-    public int getRate() {
-        return mRate;
-    }
-
-    public int getHometask() {
-        return mHometask;
-    }
-
 }

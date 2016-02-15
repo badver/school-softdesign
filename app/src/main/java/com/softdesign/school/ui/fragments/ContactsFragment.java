@@ -46,7 +46,7 @@ public class ContactsFragment extends Fragment {
         RecyclerView recyclerView = (RecyclerView) activity.findViewById(R.id.recycle_view);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(activity);
         recyclerView.setLayoutManager(layoutManager);
-        RecyclerView.Adapter adapter = new UsersAdapter(mUsers);
+        RecyclerView.Adapter adapter = new UsersAdapter(mUsers); // TODO load from DB
         recyclerView.setAdapter(adapter);
         recyclerView.setNestedScrollingEnabled(false);
 
@@ -62,17 +62,17 @@ public class ContactsFragment extends Fragment {
     }
 
     private void generateData() {
-        mUsers.add(new User("Morlee", "Andreatta", getResources().getDrawable(R.drawable.ic_face_24dp)));
-        mUsers.add(new User("Kaye", "Santo", getResources().getDrawable(R.drawable.ic_face_24dp)));
-        mUsers.add(new User("Cly", "Dasse", getResources().getDrawable(R.drawable.ic_face_24dp)));
-        mUsers.add(new User("Ianthe", "Packer", getResources().getDrawable(R.drawable.ic_face_24dp)));
-        mUsers.add(new User("Cleve", "Arnold", getResources().getDrawable(R.drawable.ic_face_24dp)));
-        mUsers.add(new User("Marylee", "Pliego", getResources().getDrawable(R.drawable.ic_face_24dp)));
-        mUsers.add(new User("Dory", "Sen", getResources().getDrawable(R.drawable.ic_face_24dp)));
-        mUsers.add(new User("Kikelia", "Huber", getResources().getDrawable(R.drawable.ic_face_24dp)));
-        mUsers.add(new User("John", "Maugham", getResources().getDrawable(R.drawable.ic_face_24dp)));
-        mUsers.add(new User("Perceval", "Reynolds", getResources().getDrawable(R.drawable.ic_face_24dp)));
-        mUsers.add(new User("Billie", "Hubsch", getResources().getDrawable(R.drawable.ic_face_24dp)));
-        mUsers.add(new User("Pedro", "Chuang", getResources().getDrawable(R.drawable.ic_face_24dp)));
+        mUsers.add(new User("Morlee", "Andreatta", getResources().getDrawable(R.drawable.ic_face_24dp).toString()));
+        mUsers.add(new User("Kaye", "Santo", getResources().getDrawable(R.drawable.ic_face_24dp).toString()));
+        mUsers.add(new User("Cly", "Dasse", getResources().getDrawable(R.drawable.ic_face_24dp).toString()));
+        mUsers.add(new User("Ianthe", "Packer", getResources().getDrawable(R.drawable.ic_face_24dp).toString()));
+        mUsers.add(new User("Cleve", "Arnold", getResources().getDrawable(R.drawable.ic_face_24dp).toString()));
+        mUsers.add(new User("Marylee", "Pliego", getResources().getDrawable(R.drawable.ic_face_24dp).toString()));
+        mUsers.add(new User("Dory", "Sen", getResources().getDrawable(R.drawable.ic_face_24dp).toString()));
+        mUsers.add(new User("Kikelia", "Huber", getResources().getDrawable(R.drawable.ic_face_24dp).toString()));
+        mUsers.add(new User("John", "Maugham", getResources().getDrawable(R.drawable.ic_face_24dp).toString()));
+        mUsers.add(new User("Perceval", "Reynolds", getResources().getDrawable(R.drawable.ic_face_24dp).toString()));
+        mUsers.add(new User("Billie", "Hubsch", getResources().getDrawable(R.drawable.ic_face_24dp).toString()));
+        mUsers.add(new User("Pedro", "Chuang", getResources().getDrawable(R.drawable.ic_face_24dp).toString()));
     }
 }
