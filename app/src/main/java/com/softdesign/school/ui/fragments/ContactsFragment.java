@@ -62,17 +62,17 @@ public class ContactsFragment extends Fragment {
     }
 
     private void generateData() {
-        mUsers.add(new User("Morlee", "Andreatta", getResources().getDrawable(R.drawable.ic_face_24dp).toString()));
-        mUsers.add(new User("Kaye", "Santo", getResources().getDrawable(R.drawable.ic_face_24dp).toString()));
-        mUsers.add(new User("Cly", "Dasse", getResources().getDrawable(R.drawable.ic_face_24dp).toString()));
-        mUsers.add(new User("Ianthe", "Packer", getResources().getDrawable(R.drawable.ic_face_24dp).toString()));
-        mUsers.add(new User("Cleve", "Arnold", getResources().getDrawable(R.drawable.ic_face_24dp).toString()));
-        mUsers.add(new User("Marylee", "Pliego", getResources().getDrawable(R.drawable.ic_face_24dp).toString()));
-        mUsers.add(new User("Dory", "Sen", getResources().getDrawable(R.drawable.ic_face_24dp).toString()));
-        mUsers.add(new User("Kikelia", "Huber", getResources().getDrawable(R.drawable.ic_face_24dp).toString()));
-        mUsers.add(new User("John", "Maugham", getResources().getDrawable(R.drawable.ic_face_24dp).toString()));
-        mUsers.add(new User("Perceval", "Reynolds", getResources().getDrawable(R.drawable.ic_face_24dp).toString()));
-        mUsers.add(new User("Billie", "Hubsch", getResources().getDrawable(R.drawable.ic_face_24dp).toString()));
-        mUsers.add(new User("Pedro", "Chuang", getResources().getDrawable(R.drawable.ic_face_24dp).toString()));
+        mUsers.add(new User("Morlee", "Andreatta", String.valueOf(R.drawable.ic_face_24dp)));
+        mUsers.add(new User("Kaye", "Santo", String.valueOf(R.drawable.ic_face_24dp)));
+        mUsers.add(new User("Cly", "Dasse", String.valueOf(R.drawable.ic_face_24dp)));
+        mUsers.add(new User("Ianthe", "Packer", String.valueOf(R.drawable.ic_face_24dp)));
+        mUsers.add(new User("Cleve", "Arnold", String.valueOf(R.drawable.ic_face_24dp)));
+        mUsers.add(new User("Marylee", "Pliego", String.valueOf(R.drawable.ic_face_24dp)));
+        mUsers.add(new User("Dory", "Sen", String.valueOf(R.drawable.ic_face_24dp)));
+        mUsers.add(new User("Kikelia", "Huber", String.valueOf(R.drawable.ic_face_24dp)));
+        mUsers.add(new User("John", "Maugham", String.valueOf(R.drawable.ic_face_24dp)));
+        mUsers.add(new User("Perceval", "Reynolds", String.valueOf(R.drawable.ic_face_24dp)));
+        mUsers.add(new User("Billie", "Hubsch", String.valueOf(R.drawable.ic_face_24dp)));
+        mUsers.add(new User("Pedro", "Chuang", String.valueOf(R.drawable.ic_face_24dp)));
     }
 }
