@@ -8,14 +8,14 @@ import android.view.ViewGroup;
 import com.softdesign.school.R;
 import com.softdesign.school.data.storage.models.User;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class UsersAdapter extends RecyclerView.Adapter<UserViewHolder> {
 
-    private ArrayList<User> mUsers;
+    private List<User> mUsers;
     private View mView;
 
-    public UsersAdapter(ArrayList<User> users) {
+    public UsersAdapter(List<User> users) {
         mUsers = users;
     }
 
