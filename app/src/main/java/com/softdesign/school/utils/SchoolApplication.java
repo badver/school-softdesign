@@ -13,7 +13,6 @@ public class SchoolApplication extends Application {
     }
 
     @Override
-
     public void onCreate() {
         super.onCreate();
         preferences = PreferenceManager.getDefaultSharedPreferences(this);

@@ -49,6 +49,21 @@
                     android:textAlignment="viewStart"
                     tools:ignore="RtlCompat,UnusedAttribute" />
 
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/et_phone_wrapper"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical">
+
+                    <EditText
+                        android:id="@+id/et_phone_value"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/fragment.profile.label.phone"
+                        android:enabled="true"/>
+
+                </android.support.design.widget.TextInputLayout>
+
             </LinearLayout>
 
             <View style="@style/profile_strip" />
@@ -82,7 +97,7 @@
                 android:paddingRight="@dimen/spacing_large">
 
                 <TextView
-                    android:id="@+id/txt_message_value"
+                    android:id="@+id/txt_email_value"
                     style="@style/font.medium"
                     android:text="@string/fragment.profile.text.email"
                     android:textSize="@dimen/font_large" />
@@ -92,6 +107,20 @@
                     style="@style/font.regular"
                     android:text="@string/fragment.profile.label.email"
                     android:textAlignment="viewStart" />
+
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/et_email_wrapper"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <EditText
+                        android:id="@+id/et_email_value"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/fragment.profile.label.email" />
+
+                </android.support.design.widget.TextInputLayout>
+
 
             </LinearLayout>
 
@@ -135,6 +164,19 @@
                     style="@style/font.regular"
                     android:text="@string/fragment.profile.label.vk" />
 
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/et_vk_wrapper"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <EditText
+                        android:id="@+id/et_vk_value"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/fragment.profile.label.vk" />
+
+                </android.support.design.widget.TextInputLayout>
+
             </LinearLayout>
 
             <View style="@style/profile_strip" />
@@ -176,6 +218,19 @@
                     style="@style/font.regular"
                     android:text="@string/fragment.profile.label.github"
                     android:textAlignment="viewStart" />
+
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/et_git_wrapper"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <EditText
+                        android:id="@+id/et_git_value"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/fragment.profile.label.github" />
+
+                </android.support.design.widget.TextInputLayout>
 
             </LinearLayout>
 
@@ -219,6 +274,19 @@
                     style="@style/font.regular"
                     android:text="@string/fragment.profile.label.about"
                     android:textAlignment="viewStart" />
+
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/et_bio_wrapper"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <EditText
+                        android:id="@+id/et_bio_value"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/fragment.profile.label.about" />
+
+                </android.support.design.widget.TextInputLayout>
 
             </LinearLayout>
 
