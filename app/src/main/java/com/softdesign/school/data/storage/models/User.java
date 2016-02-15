@@ -18,6 +18,7 @@ public class User extends Model {
     @Column(name = "github_link") public String mGithubRepo;
     @Column(name = "rate") public int mRate;
     @Column(name = "hometask") public int mHometask;
+    @Column(name = "team") public Team mTeam;
 
     public User() {
     }

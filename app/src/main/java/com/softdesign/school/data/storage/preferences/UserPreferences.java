@@ -34,11 +34,11 @@ public class UserPreferences {
     public List<String> loadUserProfileData() {
         mPreferences = SchoolApplication.getPreferences();
         List<String> userFields = new ArrayList<>();
-        userFields.add(mPreferences.getString(USER_PROFILE_PHONE, "pref tel"));
-        userFields.add(mPreferences.getString(USER_PROFILE_EMAIL, "pref mail"));
-        userFields.add(mPreferences.getString(USER_PROFILE_VK, "pref vk"));
-        userFields.add(mPreferences.getString(USER_PROFILE_GIT, "pref git"));
-        userFields.add(mPreferences.getString(USER_PROFILE_BIO, "pref bio"));
+        userFields.add(mPreferences.getString(USER_PROFILE_PHONE, "+7 (927) 784–60–73"));
+        userFields.add(mPreferences.getString(USER_PROFILE_EMAIL, "badver@mail.ru"));
+        userFields.add(mPreferences.getString(USER_PROFILE_VK, "https://vk.com/badver"));
+        userFields.add(mPreferences.getString(USER_PROFILE_GIT, "https://github.com/badver"));
+        userFields.add(mPreferences.getString(USER_PROFILE_BIO, "C++ / Python / Java Developer"));
         return userFields;
     }
 }
