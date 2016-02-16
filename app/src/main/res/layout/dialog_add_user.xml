@@ -8,17 +8,6 @@
     <LinearLayout
         style="@style/profile_text_element">
 
-        <!--<TextView-->
-        <!--android:id="@+id/add_user_txt_firstname_value"-->
-        <!--style="@style/font.medium"-->
-        <!--android:text="@string/dialog.add_user.text.firstname"/>-->
-
-        <!--<TextView-->
-        <!--android:id="@+id/add_user_txt_firstname_label"-->
-        <!--style="@style/font.regular"-->
-        <!--android:text="@string/dialog.add_user.label.firstname"-->
-        <!--android:textAlignment="viewStart"/>-->
-
         <android.support.design.widget.TextInputLayout
             android:id="@+id/add_user_et_firstname_wrapper"
             android:layout_width="match_parent"
@@ -55,8 +44,11 @@
 
     <Spinner
         android:id="@+id/team_spinner"
-        android:layout_width="160dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"/>
+        style="@android:style/Widget.Material.Spinner.Underlined"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/touch_size"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginLeft="@dimen/spacing_large"
+        android:layout_marginRight="@dimen/spacing_large"/>
 
 </LinearLayout>
