@@ -30,6 +30,13 @@ public class User extends Model {
         this.mImage = image;
     }
 
+    public User(String lastName, String firstName, Team team) {
+        super();
+        this.mFirstName = firstName;
+        this.mLastName = lastName;
+        this.mTeam = team;
+    }
+
     public static List<User> getAll() {
         return new Select()
                 .from(User.class)

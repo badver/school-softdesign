@@ -22,7 +22,7 @@ public class SchoolApplication extends com.activeandroid.app.Application {
         preferences = PreferenceManager.getDefaultSharedPreferences(this);
         ActiveAndroid.initialize(this);
 
-        generateData(); // fill database with fake users and teams
+//        generateData(); // fill database with fake users and teams
     }
 
     private void generateData() {

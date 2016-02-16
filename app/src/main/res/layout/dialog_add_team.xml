@@ -9,12 +9,12 @@
         style="@style/profile_text_element">
 
         <android.support.design.widget.TextInputLayout
-            android:id="@+id/add_team_et_firstname_wrapper"
+            android:id="@+id/add_team_et_name_wrapper"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
             <EditText
-                android:id="@+id/add_team_et_firstname_value"
+                android:id="@+id/add_team_et_name_value"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/dialog.add_team.label.name"/>

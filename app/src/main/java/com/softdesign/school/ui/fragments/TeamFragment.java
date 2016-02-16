@@ -13,6 +13,7 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 
 import com.softdesign.school.R;
 import com.softdesign.school.data.storage.models.Team;
@@ -20,13 +21,16 @@ import com.softdesign.school.ui.activities.MainActivity;
 import com.softdesign.school.ui.adapters.TeamsAdapter;
 
 public class TeamFragment extends Fragment {
+    private View mView;
+    private EditText editText;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View temp = inflater.inflate(R.layout.fragment_team, null, false);
+        mView = inflater.inflate(R.layout.fragment_team, null, false);
         getActivity().setTitle(getResources().getString(R.string.drawer_team));
         ((MainActivity) getActivity()).lockAppBar(true);
-        return temp;
+        return mView;
     }
 
     @Override
@@ -49,6 +53,7 @@ public class TeamFragment extends Fragment {
         actionButton.setImageResource(R.drawable.ic_add_24dp);
         actionButton.setLayoutParams(params);
         actionButton.show();
+
         actionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -60,7 +65,8 @@ public class TeamFragment extends Fragment {
                                 new DialogInterface.OnClickListener() {
                                     @Override
                                     public void onClick(DialogInterface dialog, int which) {
-                                        
+                                        String name = editText.getText().toString();
+                                        if (!"".equals(name)) new Team(name).save();
                                         dialog.cancel();
                                     }
                                 })
@@ -68,13 +74,13 @@ public class TeamFragment extends Fragment {
                                 new DialogInterface.OnClickListener() {
                                     @Override
                                     public void onClick(DialogInterface dialog, int which) {
-                                        //
                                         dialog.cancel();
                                     }
                                 })
                         .setView(R.layout.dialog_add_team);
                 AlertDialog alertDialog = builder.create();
                 alertDialog.show();
+                editText = (EditText) alertDialog.findViewById(R.id.add_team_et_name_value);
             }
         });
     }

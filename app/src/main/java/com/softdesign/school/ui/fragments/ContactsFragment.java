@@ -15,6 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.Spinner;
 
 import com.softdesign.school.R;
@@ -23,15 +24,14 @@ import com.softdesign.school.data.storage.models.User;
 import com.softdesign.school.ui.activities.MainActivity;
 import com.softdesign.school.ui.adapters.UsersAdapter;
 
-import java.util.ArrayList;
-
 public class ContactsFragment extends Fragment {
 
-    private ArrayList<User> mUsers;
+    private EditText firstName;
+    private EditText lastName;
+    private Spinner spinner;
 
     public ContactsFragment() {
         super();
-        mUsers = new ArrayList<>();
     }
 
     @Nullable
@@ -72,13 +72,14 @@ public class ContactsFragment extends Fragment {
                                 new DialogInterface.OnClickListener() {
                                     @Override
                                     public void onClick(DialogInterface dialog, int which) {
+                                        // TODO
+                                        new User(firstName.getText().toString(), lastName.getText().toString(), Team.getByName(spinner.getSelectedItem().toString())).save();
                                         dialog.cancel();
                                     }
                                 })
                         .setNegativeButton("Отмена", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                //
                                 dialog.cancel();
                             }
                         })
@@ -86,19 +87,22 @@ public class ContactsFragment extends Fragment {
                 AlertDialog alertDialog = builder.create();
                 alertDialog.show();
 
+                firstName = (EditText) alertDialog.findViewById(R.id.add_user_et_firstname_value);
+                lastName = (EditText) alertDialog.findViewById(R.id.add_user_et_lastname_value);
+
                 // fill spinner
-                Spinner spinner = (Spinner) alertDialog.findViewById(R.id.team_spinner);
+                spinner = (Spinner) alertDialog.findViewById(R.id.team_spinner);
                 ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, Team.getAllNames());
                 spinner.setAdapter(adapter);
                 spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                     @Override
                     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-
+                        // TODO
                     }
 
                     @Override
                     public void onNothingSelected(AdapterView<?> parent) {
-
+                        // TODO
                     }
                 });
             }

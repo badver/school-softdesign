@@ -18,13 +18,18 @@ public class Team extends Model {
     public Team() {
     }
 
-    public String getName() {
-        return name;
-    }
-
     public Team(String name) {
         super();
         this.name = name;
+    }
+
+    public static List<String> getAllNames() {
+        List<Team> teams = getAll();
+        List<String> names = new ArrayList<>(teams.size());
+        for (Team t : teams) {
+            names.add(t.name);
+        }
+        return names;
     }
 
     public static List<Team> getAll() {
@@ -34,13 +39,15 @@ public class Team extends Model {
                 .execute();
     }
 
-    public static List<String> getAllNames() {
-        List<Team> teams = getAll();
-        List<String> names = new ArrayList<>(teams.size());
-        for (Team t: teams) {
-            names.add(t.name);
-        }
-        return names;
+    public static Team getByName(String name) {
+        return new Select()
+                .from(Team.class)
+                .where("name = ?", name)
+                .executeSingle();
+    }
+
+    public String getName() {
+        return name;
     }
 
     public List<User> users() {

@@ -30,7 +30,17 @@ public class UsersAdapter extends RecyclerView.Adapter<UserViewHolder> {
     public void onBindViewHolder(UserViewHolder holder, int position) {
         User user = mUsers.get(position);
         holder.setFullname(user.getFirstName() + " " + user.getLastName());
-        holder.setAvatar(mView.getResources().getDrawable(Integer.parseInt(user.mImage)));
+        if (user.getTeam() != null) {
+            holder.setTeam(user.getTeam().getName());
+        } else {
+            holder.setTeam("Нет команды");
+        }
+
+        if (user.mImage != null) {
+            holder.setAvatar(mView.getResources().getDrawable(Integer.parseInt(user.mImage)));
+        } else {
+            holder.setAvatar(mView.getResources().getDrawable(R.drawable.ic_person_24dp));
+        }
     }
 
     @Override
