@@ -18,6 +18,10 @@ public class Team extends Model {
     public Team() {
     }
 
+    public String getName() {
+        return name;
+    }
+
     public Team(String name) {
         super();
         this.name = name;
