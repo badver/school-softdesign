@@ -20,7 +20,6 @@ public class TeamsAdapter extends RecyclerView.Adapter<TeamViewHolder> {
         mTeams = teams;
     }
 
-
     @Override
     public TeamViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         mView = LayoutInflater.from(parent.getContext()).inflate(R.layout.team_card_item, parent, false);
@@ -29,8 +28,7 @@ public class TeamsAdapter extends RecyclerView.Adapter<TeamViewHolder> {
 
     @Override
     public void onBindViewHolder(TeamViewHolder holder, int position) {
-        Team team = mTeams.get(position);
-        holder.setTeamName(team.getName());
+        holder.setTeam(mTeams.get(position));
     }
 
     @Override
