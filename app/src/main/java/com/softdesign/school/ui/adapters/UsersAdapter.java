@@ -29,7 +29,7 @@ public class UsersAdapter extends RecyclerView.Adapter<UserViewHolder> {
     @Override
     public void onBindViewHolder(UserViewHolder holder, int position) {
         User user = mUsers.get(position);
-        holder.setFullname(user.mFirstName + " " + user.mLastName);
+        holder.setFullname(user.getFirstName() + " " + user.getLastName());
         holder.setAvatar(mView.getResources().getDrawable(Integer.parseInt(user.mImage)));
     }
 

@@ -12,24 +12,21 @@ public class UserViewHolder extends RecyclerView.ViewHolder {
 
     private TextView mFullname;
     private ImageView mAvatar;
+    private TextView mTeam;
 
     public UserViewHolder(View itemView) {
         super(itemView);
-
-        mFullname = (TextView) itemView.findViewById(R.id.card_fullname);
-        mAvatar = (ImageView) itemView.findViewById(R.id.card_avatar);
+        mAvatar = (ImageView) itemView.findViewById(R.id.user_card_avatar);
+        mFullname = (TextView) itemView.findViewById(R.id.user_card_fullname);
+        mTeam = (TextView) itemView.findViewById(R.id.user_card_team);
     }
 
-    public TextView getFullname() {
-        return mFullname;
+    public void setTeam(String team) {
+        mTeam.setText(team);
     }
 
     public void setFullname(String fullname) {
         mFullname.setText(fullname);
-    }
-
-    public ImageView getAvatar() {
-        return mAvatar;
     }
 
     public void setAvatar(Drawable avatar) {

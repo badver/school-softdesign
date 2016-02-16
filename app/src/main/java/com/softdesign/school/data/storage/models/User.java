@@ -35,4 +35,44 @@ public class User extends Model {
                 .from(User.class)
                 .execute();
     }
+
+    public String getFirstName() {
+        return mFirstName;
+    }
+
+    public String getLastName() {
+        return mLastName;
+    }
+
+    public String getEmail() {
+        return mEmail;
+    }
+
+    public String getPhoneNumber() {
+        return mPhoneNumber;
+    }
+
+    public String getImage() {
+        return mImage;
+    }
+
+    public String getVkProfile() {
+        return mVkProfile;
+    }
+
+    public String getGithubRepo() {
+        return mGithubRepo;
+    }
+
+    public int getRate() {
+        return mRate;
+    }
+
+    public int getHometask() {
+        return mHometask;
+    }
+
+    public Team getTeam() {
+        return mTeam;
+    }
 }

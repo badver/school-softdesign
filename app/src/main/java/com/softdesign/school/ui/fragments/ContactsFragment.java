@@ -47,7 +47,7 @@ public class ContactsFragment extends Fragment {
         getActivity().setTitle(getResources().getString(R.string.drawer_contacts));
         MainActivity activity = (MainActivity) getActivity();
 
-        RecyclerView recyclerView = (RecyclerView) activity.findViewById(R.id.recycle_view);
+        RecyclerView recyclerView = (RecyclerView) activity.findViewById(R.id.user_recycle_view);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(activity);
         recyclerView.setLayoutManager(layoutManager);
         RecyclerView.Adapter adapter = new UsersAdapter(User.getAll());
