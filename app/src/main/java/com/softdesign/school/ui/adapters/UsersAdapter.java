@@ -20,7 +20,6 @@ public class UsersAdapter extends RecyclerView.Adapter<UserViewHolder> {
     }
 
     @Override
-
     public UserViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         mView = LayoutInflater.from(parent.getContext()).inflate(R.layout.user_card_item, parent, false);
         return new UserViewHolder(mView);
@@ -29,12 +28,7 @@ public class UsersAdapter extends RecyclerView.Adapter<UserViewHolder> {
     @Override
     public void onBindViewHolder(UserViewHolder holder, int position) {
         User user = mUsers.get(position);
-        holder.setFullname(user.getFirstName() + " " + user.getLastName());
-        if (user.getTeam() != null) {
-            holder.setTeam(user.getTeam().getName());
-        } else {
-            holder.setTeam("Нет команды");
-        }
+        holder.setUser(user);
 
         if (user.mImage != null) {
             holder.setAvatar(mView.getResources().getDrawable(Integer.parseInt(user.mImage)));

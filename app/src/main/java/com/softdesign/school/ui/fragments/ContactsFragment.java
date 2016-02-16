@@ -9,6 +9,7 @@ import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,13 +23,14 @@ import com.softdesign.school.R;
 import com.softdesign.school.data.storage.models.Team;
 import com.softdesign.school.data.storage.models.User;
 import com.softdesign.school.ui.activities.MainActivity;
+import com.softdesign.school.ui.adapters.UserViewHolder;
 import com.softdesign.school.ui.adapters.UsersAdapter;
 
 public class ContactsFragment extends Fragment {
 
-    private EditText firstName;
-    private EditText lastName;
-    private Spinner spinner;
+    private EditText mFirstName;
+    private EditText mLastName;
+    private Spinner mSpinner;
 
     public ContactsFragment() {
         super();
@@ -72,8 +74,13 @@ public class ContactsFragment extends Fragment {
                                 new DialogInterface.OnClickListener() {
                                     @Override
                                     public void onClick(DialogInterface dialog, int which) {
-                                        // TODO
-                                        new User(firstName.getText().toString(), lastName.getText().toString(), Team.getByName(spinner.getSelectedItem().toString())).save();
+                                        String firstname = mFirstName.getText().toString();
+                                        String lastname = mLastName.getText().toString();
+                                        Team team = null;
+                                        if (mSpinner.getSelectedItem() != null) {
+                                            team = Team.getByName(mSpinner.getSelectedItem().toString());
+                                        }
+                                        new User(firstname, lastname, team).save();
                                         dialog.cancel();
                                     }
                                 })
@@ -87,14 +94,14 @@ public class ContactsFragment extends Fragment {
                 AlertDialog alertDialog = builder.create();
                 alertDialog.show();
 
-                firstName = (EditText) alertDialog.findViewById(R.id.add_user_et_firstname_value);
-                lastName = (EditText) alertDialog.findViewById(R.id.add_user_et_lastname_value);
+                mFirstName = (EditText) alertDialog.findViewById(R.id.add_user_et_firstname_value);
+                mLastName = (EditText) alertDialog.findViewById(R.id.add_user_et_lastname_value);
 
-                // fill spinner
-                spinner = (Spinner) alertDialog.findViewById(R.id.team_spinner);
+                // fill mSpinner
+                mSpinner = (Spinner) alertDialog.findViewById(R.id.team_spinner);
                 ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, Team.getAllNames());
-                spinner.setAdapter(adapter);
-                spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                mSpinner.setAdapter(adapter);
+                mSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                     @Override
                     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                         // TODO
@@ -109,5 +116,19 @@ public class ContactsFragment extends Fragment {
         });
 
         activity.lockAppBar(true);
+
+        ItemTouchHelper itemTouchHelper = new ItemTouchHelper(
+                new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT) {
+                    @Override
+                    public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, RecyclerView.ViewHolder target) {
+                        return false;
+                    }
+
+                    @Override
+                    public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
+                        ((UserViewHolder) viewHolder).getUser().delete();
+                    }
+                });
+        itemTouchHelper.attachToRecyclerView(recyclerView);
     }
 }

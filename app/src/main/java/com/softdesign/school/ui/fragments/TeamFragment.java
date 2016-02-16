@@ -9,20 +9,23 @@ import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.softdesign.school.R;
 import com.softdesign.school.data.storage.models.Team;
 import com.softdesign.school.ui.activities.MainActivity;
+import com.softdesign.school.ui.adapters.TeamViewHolder;
 import com.softdesign.school.ui.adapters.TeamsAdapter;
 
 public class TeamFragment extends Fragment {
     private View mView;
-    private EditText editText;
+    private EditText mEditText;
 
     @Nullable
     @Override
@@ -65,9 +68,15 @@ public class TeamFragment extends Fragment {
                                 new DialogInterface.OnClickListener() {
                                     @Override
                                     public void onClick(DialogInterface dialog, int which) {
-                                        String name = editText.getText().toString();
-                                        if (!"".equals(name)) new Team(name).save();
-                                        dialog.cancel();
+                                        String name = mEditText.getText().toString();
+                                        Team exist = Team.getByName(name);
+                                        if (exist == null && !"".equals(name)) {
+                                            new Team(name).save();
+                                            dialog.cancel();
+                                        } else {
+                                            Toast.makeText(getActivity(), "Team with the same name already exists!", Toast.LENGTH_SHORT).show();
+                                            dialog.dismiss();
+                                        }
                                     }
                                 })
                         .setNegativeButton("Отмена",
@@ -80,8 +89,22 @@ public class TeamFragment extends Fragment {
                         .setView(R.layout.dialog_add_team);
                 AlertDialog alertDialog = builder.create();
                 alertDialog.show();
-                editText = (EditText) alertDialog.findViewById(R.id.add_team_et_name_value);
+                mEditText = (EditText) alertDialog.findViewById(R.id.add_team_et_name_value);
             }
         });
+
+        ItemTouchHelper itemTouchHelper = new ItemTouchHelper(
+                new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT) {
+                    @Override
+                    public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, RecyclerView.ViewHolder target) {
+                        return false;
+                    }
+
+                    @Override
+                    public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
+                        ((TeamViewHolder) viewHolder).getTeam().delete();
+                    }
+                });
+        itemTouchHelper.attachToRecyclerView(recyclerView);
     }
 }
