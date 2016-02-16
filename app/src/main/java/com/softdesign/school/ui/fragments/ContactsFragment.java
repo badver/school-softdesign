@@ -6,6 +6,9 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.LoaderManager;
+import android.support.v4.content.AsyncTaskLoader;
+import android.support.v4.content.Loader;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -14,7 +17,6 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -26,11 +28,15 @@ import com.softdesign.school.ui.activities.MainActivity;
 import com.softdesign.school.ui.adapters.UserViewHolder;
 import com.softdesign.school.ui.adapters.UsersAdapter;
 
-public class ContactsFragment extends Fragment {
+import java.util.List;
+
+public class ContactsFragment extends Fragment implements LoaderManager.LoaderCallbacks<List<User>> {
 
     private EditText mFirstName;
     private EditText mLastName;
     private Spinner mSpinner;
+    private RecyclerView.Adapter mAdapter;
+    private RecyclerView mRecyclerView;
 
     public ContactsFragment() {
         super();
@@ -39,6 +45,7 @@ public class ContactsFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        getLoaderManager().initLoader(0, savedInstanceState, this);
         return inflater.inflate(R.layout.fragment_contacts, null, false);
     }
 
@@ -49,12 +56,12 @@ public class ContactsFragment extends Fragment {
         getActivity().setTitle(getResources().getString(R.string.drawer_contacts));
         MainActivity activity = (MainActivity) getActivity();
 
-        RecyclerView recyclerView = (RecyclerView) activity.findViewById(R.id.user_recycle_view);
+        mRecyclerView = (RecyclerView) activity.findViewById(R.id.user_recycle_view);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(activity);
-        recyclerView.setLayoutManager(layoutManager);
-        RecyclerView.Adapter adapter = new UsersAdapter(User.getAll());
-        recyclerView.setAdapter(adapter);
-        recyclerView.setNestedScrollingEnabled(false);
+        mRecyclerView.setLayoutManager(layoutManager);
+        mAdapter = new UsersAdapter(User.getAll());
+        mRecyclerView.setAdapter(mAdapter);
+        mRecyclerView.setNestedScrollingEnabled(false);
 
         FloatingActionButton actionButton = (FloatingActionButton) getActivity().findViewById(R.id.fab);
         CoordinatorLayout.LayoutParams params = (CoordinatorLayout.LayoutParams) actionButton.getLayoutParams();
@@ -81,6 +88,7 @@ public class ContactsFragment extends Fragment {
                                             team = Team.getByName(mSpinner.getSelectedItem().toString());
                                         }
                                         new User(firstname, lastname, team).save();
+                                        getLoaderManager().getLoader(0).forceLoad();
                                         dialog.cancel();
                                     }
                                 })
@@ -99,19 +107,8 @@ public class ContactsFragment extends Fragment {
 
                 // fill mSpinner
                 mSpinner = (Spinner) alertDialog.findViewById(R.id.team_spinner);
-                ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, Team.getAllNames());
+                ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_dropdown_item, Team.getAllNames());
                 mSpinner.setAdapter(adapter);
-                mSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                    @Override
-                    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                        // TODO
-                    }
-
-                    @Override
-                    public void onNothingSelected(AdapterView<?> parent) {
-                        // TODO
-                    }
-                });
             }
         });
 
@@ -129,6 +126,27 @@ public class ContactsFragment extends Fragment {
                         ((UserViewHolder) viewHolder).getUser().delete();
                     }
                 });
-        itemTouchHelper.attachToRecyclerView(recyclerView);
+        itemTouchHelper.attachToRecyclerView(mRecyclerView);
+    }
+
+    @Override
+    public Loader<List<User>> onCreateLoader(int id, Bundle args) {
+        return new AsyncTaskLoader<List<User>>(getContext()) {
+            @Override
+            public List<User> loadInBackground() {
+                return User.getAll();
+            }
+        };
+    }
+
+    @Override
+    public void onLoadFinished(Loader<List<User>> loader, List<User> data) {
+        mAdapter = new UsersAdapter(data);
+        mRecyclerView.setAdapter(mAdapter);
+    }
+
+    @Override
+    public void onLoaderReset(Loader<List<User>> loader) {
+
     }
 }

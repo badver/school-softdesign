@@ -6,6 +6,9 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.LoaderManager;
+import android.support.v4.content.AsyncTaskLoader;
+import android.support.v4.content.Loader;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -23,9 +26,13 @@ import com.softdesign.school.ui.activities.MainActivity;
 import com.softdesign.school.ui.adapters.TeamViewHolder;
 import com.softdesign.school.ui.adapters.TeamsAdapter;
 
-public class TeamFragment extends Fragment {
+import java.util.List;
+
+public class TeamFragment extends Fragment implements LoaderManager.LoaderCallbacks<List<Team>> {
     private View mView;
     private EditText mEditText;
+    private RecyclerView.Adapter mAdapter;
+    private RecyclerView mRecyclerView;
 
     @Nullable
     @Override
@@ -33,6 +40,7 @@ public class TeamFragment extends Fragment {
         mView = inflater.inflate(R.layout.fragment_team, null, false);
         getActivity().setTitle(getResources().getString(R.string.drawer_team));
         ((MainActivity) getActivity()).lockAppBar(true);
+        getLoaderManager().initLoader(0, savedInstanceState, this);
         return mView;
     }
 
@@ -41,13 +49,13 @@ public class TeamFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
 
         MainActivity activity = (MainActivity) getActivity();
-        RecyclerView recyclerView = (RecyclerView) activity.findViewById(R.id.team_recycle_view);
+        mRecyclerView = (RecyclerView) activity.findViewById(R.id.team_recycle_view);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(activity);
-        recyclerView.setLayoutManager(layoutManager);
+        mRecyclerView.setLayoutManager(layoutManager);
 
-        RecyclerView.Adapter adapter = new TeamsAdapter(Team.getAll());
-        recyclerView.setAdapter(adapter);
-        recyclerView.setNestedScrollingEnabled(false);
+        mAdapter = new TeamsAdapter(Team.getAll());
+        mRecyclerView.setAdapter(mAdapter);
+        mRecyclerView.setNestedScrollingEnabled(false);
 
         FloatingActionButton actionButton = (FloatingActionButton) getActivity().findViewById(R.id.fab);
         CoordinatorLayout.LayoutParams params = (CoordinatorLayout.LayoutParams) actionButton.getLayoutParams();
@@ -72,9 +80,10 @@ public class TeamFragment extends Fragment {
                                         Team exist = Team.getByName(name);
                                         if (exist == null && !"".equals(name)) {
                                             new Team(name).save();
+                                            getLoaderManager().getLoader(0).forceLoad();
                                             dialog.cancel();
                                         } else {
-                                            Toast.makeText(getActivity(), "Team with the same name already exists!", Toast.LENGTH_SHORT).show();
+                                            Toast.makeText(getActivity(), "Team with this name already exists!", Toast.LENGTH_SHORT).show();
                                             dialog.dismiss();
                                         }
                                     }
@@ -103,8 +112,30 @@ public class TeamFragment extends Fragment {
                     @Override
                     public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
                         ((TeamViewHolder) viewHolder).getTeam().delete();
+                        getLoaderManager().getLoader(0).forceLoad();
                     }
                 });
-        itemTouchHelper.attachToRecyclerView(recyclerView);
+        itemTouchHelper.attachToRecyclerView(mRecyclerView);
+    }
+
+    @Override
+    public Loader<List<Team>> onCreateLoader(int id, Bundle args) {
+        return new AsyncTaskLoader<List<Team>>(getContext()) {
+            @Override
+            public List<Team> loadInBackground() {
+                return Team.getAll();
+            }
+        };
+    }
+
+    @Override
+    public void onLoadFinished(Loader<List<Team>> loader, List<Team> data) {
+        mAdapter = new TeamsAdapter(data);
+        mRecyclerView.setAdapter(mAdapter);
+    }
+
+    @Override
+    public void onLoaderReset(Loader<List<Team>> loader) {
+
     }
 }
