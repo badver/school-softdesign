@@ -10,9 +10,33 @@
     <string name="drawer.team">Команда</string>
     <string name="drawer.tasks">Задачи</string>
     <string name="drawer.setting">Настройки</string>
+
     <string name="fragment.contacts.description">Здесь будут контакты</string>
     <string name="fragment.team.description">Здесь будут команды</string>
     <string name="fragment.tasks.description">Здесь будут задачи</string>
     <string name="fragment.settings.description">Здесь будут настройки</string>
-    <string name="fragment.profile.description">Здесь будут профиль</string>
+    <string name="fragment.profile.description">Профиль</string>
+
+    <string name="ff_regular">sans-serif</string>
+    <string name="ff_regular_medium">sans-serif-medium</string>
+
+    <string name="fragment.profile.label.phone">Мобильный</string>
+    <string name="fragment.profile.text.phone">+7 (927) 784–60–73</string>
+
+    <string name="fragment.profile.label.email">E-mail</string>
+    <string name="fragment.profile.text.email">badver@mail.ru</string>
+
+    <string name="fragment.profile.label.vk">Профиль в VK</string>
+    <string name="fragment.profile.text.vk">https://vk.com/badver</string>
+
+    <string name="fragment.profile.label.github">Репозиторий</string>
+    <string name="fragment.profile.text.github">https://github.com/badver</string>
+
+    <string name="fragment.profile.label.about">О себе</string>
+    <string name="fragment.profile.text.about">C++ / Python / Java Developer</string>
+
+    <string name="fragment.profile.text.name">Андрей Парваткин</string>
+
+    <string name="my_rating">100</string>
+
 </resources>

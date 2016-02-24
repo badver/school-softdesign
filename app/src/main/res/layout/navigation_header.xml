@@ -71,7 +71,7 @@
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:textColor="@color/colorAccent"
-            android:text="100" />
+            android:text="@string/my_rating" />
     </RelativeLayout>
 
 </RelativeLayout>
