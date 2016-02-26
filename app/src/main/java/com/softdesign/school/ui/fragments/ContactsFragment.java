@@ -124,6 +124,7 @@ public class ContactsFragment extends Fragment implements LoaderManager.LoaderCa
                     @Override
                     public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
                         ((UserViewHolder) viewHolder).getUser().delete();
+                        getLoaderManager().getLoader(0).forceLoad();
                     }
                 });
         itemTouchHelper.attachToRecyclerView(mRecyclerView);
