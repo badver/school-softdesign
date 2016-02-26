@@ -38,5 +38,10 @@
     <string name="fragment.profile.text.name">Андрей Парваткин</string>
 
     <string name="my_rating">100</string>
+    <string name="dialog.add_user.text.firstname">Имя</string>
+    <string name="dialog.add_user.label.firstname">Имя</string>
+    <string name="dialog.add_user.label.lastname">Фамилия</string>
+    <string name="dialog.add_user.text.lastname">Фамилия</string>
+    <string name="dialog.add_team.label.name">Имя команды</string>
 
 </resources>

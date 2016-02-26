@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        style="@style/profile_text_element">
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/add_user_et_firstname_wrapper"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/add_user_et_firstname_value"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/dialog.add_user.label.firstname"/>
+        </android.support.design.widget.TextInputLayout>
+
+    </LinearLayout>
+
+    <View style="@style/profile_strip"/>
+
+    <LinearLayout
+        style="@style/profile_text_element">
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/add_user_et_lastname_wrapper"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/add_user_et_lastname_value"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/dialog.add_user.label.lastname"/>
+
+        </android.support.design.widget.TextInputLayout>
+
+    </LinearLayout>
+
+    <Spinner
+        android:id="@+id/team_spinner"
+        style="@android:style/Widget.Material.Spinner.Underlined"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/touch_size"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginLeft="@dimen/spacing_large"
+        android:layout_marginRight="@dimen/spacing_large"/>
+
+</LinearLayout>
