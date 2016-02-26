@@ -29,18 +29,20 @@ import com.softdesign.school.ui.fragments.TasksFragment;
 import com.softdesign.school.ui.fragments.TeamFragment;
 import com.softdesign.school.utils.Lg;
 
+import butterknife.Bind;
+import butterknife.ButterKnife;
+
 public class MainActivity extends AppCompatActivity {
 
     public final static String EXTRA_IMAGE = "extra_image";
+    @Bind(R.id.toolbar) Toolbar mToolbar;
+    @Bind(R.id.navigation_view) NavigationView mNavigationView;
+    @Bind(R.id.navigation_drawer) DrawerLayout mNavigationDrawer;
+    @Bind(R.id.main_frame_container) FrameLayout mFrameContainer;
+    @Bind(R.id.app_bar_layout) AppBarLayout mAppBar;
+    @Bind(R.id.collapsing_toolbar) CollapsingToolbarLayout mCollapsingToolbarLayout;
     private String TAG;
-    private Toolbar mToolbar;
-    private NavigationView mNavigationView;
-    private DrawerLayout mNavigationDrawer;
     private Fragment mFragment;
-    private FrameLayout mFrameContainer;
-    private CollapsingToolbarLayout mCollapsingToolbarLayout;
-    private AppBarLayout mAppBar;
-
     private boolean isCollapsed;
 
     @Override
@@ -62,12 +64,7 @@ public class MainActivity extends AppCompatActivity {
             window.setStatusBarColor(color);
         }
 
-        mAppBar = (AppBarLayout) findViewById(R.id.app_bar_layout);
-        mNavigationView = (NavigationView) findViewById(R.id.navigation_view);
-        mNavigationDrawer = (DrawerLayout) findViewById(R.id.navigation_drawer);
-        mToolbar = (Toolbar) findViewById(R.id.toolbar);
-        mFrameContainer = (FrameLayout) findViewById(R.id.main_frame_container);
-
+        ButterKnife.bind(this);
         setupToolbar();
         setupDrawer();
 
@@ -88,7 +85,6 @@ public class MainActivity extends AppCompatActivity {
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
         ViewCompat.setTransitionName(findViewById(R.id.app_bar_layout), EXTRA_IMAGE);
-        mCollapsingToolbarLayout = (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar);
     }
 
     private void setupDrawer() {
@@ -120,6 +116,8 @@ public class MainActivity extends AppCompatActivity {
                         mFragment = new SettingsFragment();
                         mCollapsingToolbarLayout.setTitle(getString(R.string.drawer_setting));
                         mNavigationView.getMenu().findItem(R.id.drawer_setting).setChecked(true);
+                        break;
+                    default:
                         break;
                 }
 
@@ -174,6 +172,8 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case R.id.fragment_settings:
                 mNavigationView.getMenu().findItem(R.id.drawer_setting).setChecked(true);
+                break;
+            default:
                 break;
         }
     }

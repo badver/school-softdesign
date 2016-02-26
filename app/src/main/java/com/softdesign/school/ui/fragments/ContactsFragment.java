@@ -16,17 +16,11 @@ import com.softdesign.school.R;
 import com.softdesign.school.data.storage.models.User;
 import com.softdesign.school.ui.activities.MainActivity;
 import com.softdesign.school.ui.adapters.UsersAdapter;
-import com.softdesign.school.utils.Lg;
 
 import java.util.ArrayList;
 
 public class ContactsFragment extends Fragment {
 
-    private static final String TAG = "CONTACTS_FRAGMENT";
-
-    private RecyclerView mRecyclerView;
-    private RecyclerView.Adapter mAdapter;
-    private RecyclerView.LayoutManager mLayoutManager;
     private ArrayList<User> mUsers;
 
     public ContactsFragment() {
@@ -37,25 +31,7 @@ public class ContactsFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View temp = inflater.inflate(R.layout.fragment_contacts, null, false);
-        return temp;
-    }
-
-    private void generateData() {
-        mUsers.add(new User("Morlee", "Andreatta", getResources().getDrawable(R.drawable.ic_face_24dp)));
-        mUsers.add(new User("Kaye", "Santo", getResources().getDrawable(R.drawable.ic_face_24dp)));
-        mUsers.add(new User("Cly", "Dasse", getResources().getDrawable(R.drawable.ic_face_24dp)));
-        mUsers.add(new User("Ianthe", "Packer", getResources().getDrawable(R.drawable.ic_face_24dp)));
-
-        mUsers.add(new User("Cleve", "Arnold", getResources().getDrawable(R.drawable.ic_face_24dp)));
-        mUsers.add(new User("Marylee", "Pliego", getResources().getDrawable(R.drawable.ic_face_24dp)));
-        mUsers.add(new User("Dory", "Sen", getResources().getDrawable(R.drawable.ic_face_24dp)));
-        mUsers.add(new User("Kikelia", "Huber", getResources().getDrawable(R.drawable.ic_face_24dp)));
-
-        mUsers.add(new User("John", "Maugham", getResources().getDrawable(R.drawable.ic_face_24dp)));
-        mUsers.add(new User("Perceval", "Reynolds", getResources().getDrawable(R.drawable.ic_face_24dp)));
-        mUsers.add(new User("Billie", "Hubsch", getResources().getDrawable(R.drawable.ic_face_24dp)));
-        mUsers.add(new User("Pedro", "Chuang", getResources().getDrawable(R.drawable.ic_face_24dp)));
+        return inflater.inflate(R.layout.fragment_contacts, null, false);
     }
 
     @Override
@@ -67,12 +43,12 @@ public class ContactsFragment extends Fragment {
 
         generateData();
 
-        mRecyclerView = (RecyclerView) activity.findViewById(R.id.recycle_view);
-        mLayoutManager = new LinearLayoutManager(activity);
-        mRecyclerView.setLayoutManager(mLayoutManager);
-        mAdapter = new UsersAdapter(mUsers);
-        mRecyclerView.setAdapter(mAdapter);
-        mRecyclerView.setNestedScrollingEnabled(false);
+        RecyclerView recyclerView = (RecyclerView) activity.findViewById(R.id.recycle_view);
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(activity);
+        recyclerView.setLayoutManager(layoutManager);
+        RecyclerView.Adapter adapter = new UsersAdapter(mUsers);
+        recyclerView.setAdapter(adapter);
+        recyclerView.setNestedScrollingEnabled(false);
 
         FloatingActionButton actionButton = (FloatingActionButton) getActivity().findViewById(R.id.fab);
         CoordinatorLayout.LayoutParams params = (CoordinatorLayout.LayoutParams) actionButton.getLayoutParams();
@@ -83,5 +59,20 @@ public class ContactsFragment extends Fragment {
         actionButton.show();
 
         activity.lockAppBar(true);
+    }
+
+    private void generateData() {
+        mUsers.add(new User("Morlee", "Andreatta", getResources().getDrawable(R.drawable.ic_face_24dp)));
+        mUsers.add(new User("Kaye", "Santo", getResources().getDrawable(R.drawable.ic_face_24dp)));
+        mUsers.add(new User("Cly", "Dasse", getResources().getDrawable(R.drawable.ic_face_24dp)));
+        mUsers.add(new User("Ianthe", "Packer", getResources().getDrawable(R.drawable.ic_face_24dp)));
+        mUsers.add(new User("Cleve", "Arnold", getResources().getDrawable(R.drawable.ic_face_24dp)));
+        mUsers.add(new User("Marylee", "Pliego", getResources().getDrawable(R.drawable.ic_face_24dp)));
+        mUsers.add(new User("Dory", "Sen", getResources().getDrawable(R.drawable.ic_face_24dp)));
+        mUsers.add(new User("Kikelia", "Huber", getResources().getDrawable(R.drawable.ic_face_24dp)));
+        mUsers.add(new User("John", "Maugham", getResources().getDrawable(R.drawable.ic_face_24dp)));
+        mUsers.add(new User("Perceval", "Reynolds", getResources().getDrawable(R.drawable.ic_face_24dp)));
+        mUsers.add(new User("Billie", "Hubsch", getResources().getDrawable(R.drawable.ic_face_24dp)));
+        mUsers.add(new User("Pedro", "Chuang", getResources().getDrawable(R.drawable.ic_face_24dp)));
     }
 }

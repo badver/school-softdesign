@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/fragment_profile"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<android.support.v4.widget.NestedScrollView android:id="@+id/fragment_profile"
+                                            xmlns:android="http://schemas.android.com/apk/res/android"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="match_parent">
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+                  xmlns:tools="http://schemas.android.com/tools"
+                  android:layout_width="match_parent"
+                  android:layout_height="match_parent"
+                  android:orientation="vertical">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -18,40 +18,43 @@
             android:minHeight="@dimen/list_item">
 
             <ImageView
-                android:layout_width="@dimen/icon_size"
-                android:layout_height="@dimen/icon_size"
-                android:layout_centerVertical="true"
-                android:layout_gravity="center_vertical"
-                android:layout_marginLeft="@dimen/spacing_normal"
-                android:layout_marginStart="@dimen/spacing_normal"
-                android:src="@drawable/ic_call_24dp" />
+                android:src="@drawable/ic_call_24dp"
+                style="@style/profile_element_image"/>
 
             <LinearLayout
                 android:id="@+id/linearLayout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="@dimen/spacing_large"
-                android:layout_marginStart="@dimen/spacing_large"
-                android:orientation="vertical"
-                android:paddingEnd="@dimen/spacing_large"
-                android:paddingRight="@dimen/spacing_large">
+                style="@style/profile_text_element">
 
                 <TextView
                     android:id="@+id/txt_phone_value"
                     style="@style/font.medium"
-                    android:text="@string/fragment.profile.text.phone" />
+                    android:text="@string/fragment.profile.text.phone"/>
 
                 <TextView
                     android:id="@+id/txt_phone_label"
                     style="@style/font.regular"
                     android:text="@string/fragment.profile.label.phone"
                     android:textAlignment="viewStart"
-                    tools:ignore="RtlCompat,UnusedAttribute" />
+                    tools:ignore="RtlCompat,UnusedAttribute"/>
+
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/et_phone_wrapper"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical">
+
+                    <EditText
+                        android:id="@+id/et_phone_value"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:enabled="true"
+                        android:hint="@string/fragment.profile.label.phone"/>
+
+                </android.support.design.widget.TextInputLayout>
 
             </LinearLayout>
 
-            <View style="@style/profile_strip" />
+            <View style="@style/profile_strip"/>
 
         </RelativeLayout>
 
@@ -62,40 +65,42 @@
             android:minHeight="@dimen/list_item">
 
             <ImageView
-                android:layout_width="@dimen/icon_size"
-                android:layout_height="@dimen/icon_size"
-                android:layout_centerVertical="true"
-                android:layout_gravity="center_vertical"
-                android:layout_marginLeft="@dimen/spacing_normal"
-                android:layout_marginStart="@dimen/spacing_normal"
-                android:src="@drawable/ic_email_24dp" />
+                android:src="@drawable/ic_email_24dp"
+                style="@style/profile_element_image"/>
 
             <LinearLayout
                 android:id="@+id/linearLayout_msg"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="@dimen/spacing_large"
-                android:layout_marginStart="@dimen/spacing_large"
-                android:orientation="vertical"
-                android:paddingEnd="@dimen/spacing_large"
-                android:paddingRight="@dimen/spacing_large">
+                style="@style/profile_text_element">
 
                 <TextView
-                    android:id="@+id/txt_message_value"
+                    android:id="@+id/txt_email_value"
                     style="@style/font.medium"
                     android:text="@string/fragment.profile.text.email"
-                    android:textSize="@dimen/font_large" />
+                    android:textSize="@dimen/font_large"/>
 
                 <TextView
                     android:id="@+id/txt_email_label"
                     style="@style/font.regular"
                     android:text="@string/fragment.profile.label.email"
-                    android:textAlignment="viewStart" />
+                    android:textAlignment="viewStart"/>
+
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/et_email_wrapper"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <EditText
+                        android:id="@+id/et_email_value"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/fragment.profile.label.email"/>
+
+                </android.support.design.widget.TextInputLayout>
+
 
             </LinearLayout>
 
-            <View style="@style/profile_strip" />
+            <View style="@style/profile_strip"/>
 
         </RelativeLayout>
 
@@ -106,38 +111,39 @@
             android:minHeight="@dimen/list_item">
 
             <ImageView
-                android:layout_width="@dimen/icon_size"
-                android:layout_height="@dimen/icon_size"
-                android:layout_centerVertical="true"
-                android:layout_gravity="center_vertical"
-                android:layout_marginLeft="@dimen/spacing_normal"
-                android:layout_marginStart="@dimen/spacing_normal"
-                android:src="@drawable/vk_24dp" />
+                android:src="@drawable/vk_24dp"
+                style="@style/profile_element_image"/>
 
             <LinearLayout
                 android:id="@+id/linearLayout_vk"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="@dimen/spacing_large"
-                android:layout_marginStart="@dimen/spacing_large"
-                android:orientation="vertical"
-                android:paddingEnd="@dimen/spacing_large"
-                android:paddingRight="@dimen/spacing_large">
+                style="@style/profile_text_element">
 
                 <TextView
                     android:id="@+id/txt_vk_value"
                     style="@style/font.medium"
-                    android:text="@string/fragment.profile.text.vk" />
+                    android:text="@string/fragment.profile.text.vk"/>
 
                 <TextView
                     android:id="@+id/txt_vk_label"
                     style="@style/font.regular"
-                    android:text="@string/fragment.profile.label.vk" />
+                    android:text="@string/fragment.profile.label.vk"/>
+
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/et_vk_wrapper"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <EditText
+                        android:id="@+id/et_vk_value"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/fragment.profile.label.vk"/>
+
+                </android.support.design.widget.TextInputLayout>
 
             </LinearLayout>
 
-            <View style="@style/profile_strip" />
+            <View style="@style/profile_strip"/>
 
         </RelativeLayout>
 
@@ -148,38 +154,39 @@
             android:minHeight="@dimen/list_item">
 
             <ImageView
-                android:layout_width="@dimen/icon_size"
-                android:layout_height="@dimen/icon_size"
-                android:layout_centerVertical="true"
-                android:layout_gravity="center_vertical"
-                android:layout_marginLeft="@dimen/spacing_normal"
-                android:layout_marginStart="@dimen/spacing_normal"
-                android:src="@drawable/github" />
+                android:src="@drawable/github"
+                style="@style/profile_element_image"/>
 
             <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="@dimen/spacing_large"
-                android:layout_marginStart="@dimen/spacing_large"
-                android:orientation="vertical"
-                android:paddingEnd="@dimen/spacing_large"
-                android:paddingRight="@dimen/spacing_large">
+                style="@style/profile_text_element">
 
                 <TextView
                     android:id="@+id/txt_github_value"
                     style="@style/font.medium"
-                    android:text="@string/fragment.profile.text.github" />
+                    android:text="@string/fragment.profile.text.github"/>
 
                 <TextView
                     android:id="@+id/txt_github_label"
                     style="@style/font.regular"
                     android:text="@string/fragment.profile.label.github"
-                    android:textAlignment="viewStart" />
+                    android:textAlignment="viewStart"/>
+
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/et_git_wrapper"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <EditText
+                        android:id="@+id/et_git_value"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/fragment.profile.label.github"/>
+
+                </android.support.design.widget.TextInputLayout>
 
             </LinearLayout>
 
-            <View style="@style/profile_strip" />
+            <View style="@style/profile_strip"/>
 
         </RelativeLayout>
 
@@ -190,35 +197,36 @@
             android:minHeight="@dimen/list_item">
 
             <ImageView
-                android:layout_width="@dimen/icon_size"
-                android:layout_height="@dimen/icon_size"
-                android:layout_centerVertical="true"
-                android:layout_gravity="center_vertical"
-                android:layout_marginLeft="@dimen/spacing_normal"
-                android:layout_marginStart="@dimen/spacing_normal"
-                android:src="@drawable/ic_face_24dp" />
+                android:src="@drawable/ic_face_24dp"
+                style="@style/profile_element_image"/>
 
             <LinearLayout
                 android:id="@+id/linearLayout_about"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="@dimen/spacing_large"
-                android:layout_marginStart="@dimen/spacing_large"
-                android:orientation="vertical"
-                android:paddingEnd="@dimen/spacing_large"
-                android:paddingRight="@dimen/spacing_large">
+                style="@style/profile_text_element">
 
                 <TextView
                     android:id="@+id/txt_about_value"
                     style="@style/font.medium"
-                    android:text="@string/fragment.profile.text.about" />
+                    android:text="@string/fragment.profile.text.about"/>
 
                 <TextView
                     android:id="@+id/txt_about_label"
                     style="@style/font.regular"
                     android:text="@string/fragment.profile.label.about"
-                    android:textAlignment="viewStart" />
+                    android:textAlignment="viewStart"/>
+
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/et_bio_wrapper"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <EditText
+                        android:id="@+id/et_bio_value"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/fragment.profile.label.about"/>
+
+                </android.support.design.widget.TextInputLayout>
 
             </LinearLayout>
 
