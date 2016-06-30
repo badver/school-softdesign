@@ -111,6 +111,7 @@ public class TeamFragment extends Fragment implements LoaderManager.LoaderCallba
 
                     @Override
                     public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
+                        // TODO: 26.02.16 check if user with this team is exist and show warning
                         ((TeamViewHolder) viewHolder).getTeam().delete();
                         getLoaderManager().getLoader(0).forceLoad();
                     }
